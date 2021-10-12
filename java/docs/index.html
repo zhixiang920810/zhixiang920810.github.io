@@ -8,8 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   <!-- <link rel="stylesheet" href="vue.css"> -->
-  <!-- Gitalk评论插件 -->
-<link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css">
 
 </head>
 <body>
@@ -52,29 +50,11 @@
     }
 
 
-    // 评论
-    const gitalk = new Gitalk({
-        // 这个需要在github上申请一个OAuth application
-        clientID: '86b25d2cc2beb1afc1a4',   // GitHub Application Client ID
-        clientSecret: 'b4d12f295f8b68c2bd56fbfc5c6493442b3fcc4b',   // GitHub Application Client Secret
-        repo: 'zhixiang-doc', // //存储你评论 issue 的 Github 仓库名
-        owner: 'zhixiang920810',
-        admin: ['zhixiang920810'],    // 这个仓库的管理员
-        distractionFreeMode: true,  // 是否添加全屏遮罩
-        id: window.location.pathname    // 页面的唯一标识，gitalk 会根据这个标识自动创建的issue的标签,我们使用页面的相对路径作为标识
-    })
-    gitalk.render('gitalk-container');    // 渲染Gitalk评论组件
-    // 监听URL中hash的变化，如果发现换了一个MD文件，那么刷新页面，解决整个网站使用一个gitalk评论issues的问题。
-window.onhashchange = function (event) {
-	if (event.newURL.split('?')[0] !== event.oldURL.split('?')[0]) {
-		location.reload()
-	}
-}
+    
   </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <script src="//unpkg.com/docsify/lib/plugins/gitalk.min.js"></script>
-<script src="//unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
     <!-- <script src="docsify.min.js"></script> -->
   <!-- 字数统计 -->
   <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
@@ -89,7 +69,10 @@ window.onhashchange = function (event) {
 <!-- <script src="//cdn.jsdelivr.net/npm/docsify-edit-on-github"></script> -->
 <!-- disqus评论 -->
 <!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/disqus.min.js"></script> -->
-
+  <!-- Gitalk评论插件 -->
+  <link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css">
+  <script src="//unpkg.com/docsify/lib/plugins/gitalk.min.js"></script>
+  <script src="//unpkg.com/gitalk/dist/gitalk.min.js"></script>
 <!-- 复制代码到剪切板 -->
 <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
 <!-- 分页 -->
@@ -97,5 +80,26 @@ window.onhashchange = function (event) {
 <!-- 图片缩放 -->
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
 <!-- 问题：代码层级显示  、 评论-->
+
+<script>
+// 评论
+const gitalk = new Gitalk({
+        // 这个需要在github上申请一个OAuth application
+        clientID: '86b25d2cc2beb1afc1a4',   // GitHub Application Client ID
+        clientSecret: 'b4d12f295f8b68c2bd56fbfc5c6493442b3fcc4b',   // GitHub Application Client Secret
+        repo: 'zhixiang-doc', // //存储你评论 issue 的 Github 仓库名
+        owner: 'zhixiang920810',
+        admin: ['zhixiang920810'],    // 这个仓库的管理员
+        distractionFreeMode: true,  // 是否添加全屏遮罩
+        id: window.location.pathname    // 页面的唯一标识，gitalk 会根据这个标识自动创建的issue的标签,我们使用页面的相对路径作为标识
+    })
+    gitalk.render('gitalk-container');    // 渲染Gitalk评论组件
+    // 监听URL中hash的变化，如果发现换了一个MD文件，那么刷新页面，解决整个网站使用一个gitalk评论issues的问题。
+  window.onhashchange = function (event) {
+    if (event.newURL.split('?')[0] !== event.oldURL.split('?')[0]) {
+      location.reload()
+    }
+  }
+</script>
 </body>
 </html>
