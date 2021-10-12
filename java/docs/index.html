@@ -98,10 +98,10 @@ const gitalk = new Gitalk({
         // 这个需要在github上申请一个OAuth application
         clientID: '86b25d2cc2beb1afc1a4',   // GitHub Application Client ID
         clientSecret: 'b4d12f295f8b68c2bd56fbfc5c6493442b3fcc4b',   // GitHub Application Client Secret
-        repo: 'zhixiang-doc', // //存储你评论 issue 的 Github 仓库名
+        repo: 'zhixiang920810.github.io', // //存储你评论 issue 的 Github 仓库名
         owner: 'zhixiang920810',
         admin: ['zhixiang920810'],    // 这个仓库的管理员
-        distractionFreeMode: true,  // 是否添加全屏遮罩
+        distractionFreeMode: false,  // 是否添加全屏遮罩
         id: window.location.pathname    // 页面的唯一标识，gitalk 会根据这个标识自动创建的issue的标签,我们使用页面的相对路径作为标识
     })
     // gitalk.render('gitalk-container');    // 渲染Gitalk评论组件
