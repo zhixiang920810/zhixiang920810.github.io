@@ -8,6 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   <!-- <link rel="stylesheet" href="vue.css"> -->
+  <!-- Gitalk评论插件 -->
+<link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css">
+<script src="//unpkg.com/docsify/lib/plugins/gitalk.min.js"></script>
+<script src="//unpkg.com/gitalk/dist/gitalk.min.js"></script>
 </head>
 <body>
   <div id="app"></div>
@@ -25,6 +29,12 @@
       '/.*/_sidebar.md': '/_sidebar.md'
       },
       count:{countable:true,fontsize:'0.9em',color:'rgb(90,90,90)',language:'chinese' },//统计字数
+      pagination: {
+        previousText: '上一章节',
+        nextText: '下一章节',
+        crossChapter: true,
+        crossChapterText: true,
+      },
       // plugins: [//直接转到github上编辑？
       // EditOnGithubPlugin.create(
       //     'https://gitlab.meipian.cn/fore/project/article-core/blob/master/',
@@ -38,7 +48,7 @@
       //     }
       //   )
       // ],
-      disqus: 'shortname',//评论系统
+      // disqus: 'shortname',//评论系统
 			subMaxLevel: 2 //设置侧片栏最大层级,最大6级
     }
 
@@ -73,16 +83,18 @@ window.onhashchange = function (event) {
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
 <!-- 解析成有样式的数字   :100:-->
 <!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script> -->
-<!-- 图片缩放 -->
-<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
-<!-- 直接转到github上编辑 -->
+
+<!-- 直接转到github上编辑  https://github.com/njleonzhang/docsify-edit-on-github-->
 <!-- <script src="//cdn.jsdelivr.net/npm/docsify-edit-on-github"></script> -->
 <!-- disqus评论 -->
 <!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/disqus.min.js"></script> -->
-<!-- Gitalk评论插件 -->
-<link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css">
-<script src="//unpkg.com/docsify/lib/plugins/gitalk.min.js"></script>
-<script src="//unpkg.com/gitalk/dist/gitalk.min.js"></script>
-<!-- 问题：代码层级显示 -->
+
+<!-- 复制代码到剪切板 -->
+<script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+<!-- 分页 -->
+<script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+<!-- 图片缩放 -->
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+<!-- 问题：代码层级显示  、 评论-->
 </body>
 </html>
