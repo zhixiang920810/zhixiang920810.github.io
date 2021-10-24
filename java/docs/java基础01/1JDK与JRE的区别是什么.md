@@ -2,7 +2,7 @@
 
 ### JDK
 
-JDK全称：Java Development Kit，是整个Java的核心，包含了Java运行环境（JRE）和一系列Java开发工具完整的包，同时包括了编译器javac、监控工具jconsole、分析工具jvisualvm等。
+JDK全称：Java Development Kit，是整个Java的核心，包含了Java运行环境（JRE）和一系列Java开发工具完整的包。
 
 ### JRE
 
