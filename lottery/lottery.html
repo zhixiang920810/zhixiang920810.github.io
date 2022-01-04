@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lottery</title>
+    <link href="layuiadmin/layui/css/layui.css" media="all" rel="stylesheet">
+    <script src="layuiadmin/layui/layui.js"></script>
+</head>
+
+<body>
+    <!-- 1.随机生成号码  -- ok
+         2.排除哪些号码再随机：机选两注，把这里号码都排除掉再随机  -- ok
+         3. 生成号码放入表格：删除、编辑 导出来  -- ok
+         4.随机指定范围数字，可随机几个  -- 给一个输入框或是范围轴   初始化的数组就取这个范围
+         5.胆拖  ？
+         6.试试：找几个规律，用历史数据跑下看有多少符合的；找几个结构差不多的情况，然后找历史记录；？
+    
+    -->
+    <div class="layui-container1">
+        <form class="layui-form">
+            <div class="layui-collapse" lay-filter="form_zd">
+                <div class="layui-colla-item">
+                    <h2 class="layui-colla-title">表单数据</h2>
+                    <div class="layui-colla-content layui-show">
+                        <div class="layui-row mar-20">
+                            <div class="layui-col-md12 search1">
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">事件标题</label>
+                                        <div class="layui-inline layui-form">
+                                            <input name="number1" id="number1" class="layui-input" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">事件内容</label>
+                                        <div class="layui-inline layui-form">
+                                            <input name="number2" id="number2" class="layui-input" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">风险层级</label>
+                                        <div class="layui-inline layui-form">
+                                            <input name="number3" id="number3" class="layui-input" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">风险等级</label>
+                                        <div class="layui-inline layui-form">
+                                            <input name="number4" id="number4" class="layui-input" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">开始时间</label>
+                                        <div class="layui-inline">
+                                            <div class="layui-card layui-form">
+                                                <input name="number5" id="number5" class="layui-input"
+                                                    autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">结束时间</label>
+                                        <div class="layui-inline">
+                                            <div class="layui-card layui-form">
+                                                <input name="number6" id="number6" class="layui-input"
+                                                    autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">蓝</label>
+                                        <div class="layui-inline">
+                                            <div class="layui-card layui-form">
+                                                <input name="lan_number" id="lan_number" class="layui-input"
+                                                    autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">排除1</label>
+                                        <div class="layui-inline">
+                                            <div class="layui-card layui-form">
+                                                <input name="red_pc_number" id="red_pc_number" class="layui-input"
+                                                    placeholder="1,2" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">排除2</label>
+                                        <div class="layui-inline">
+                                            <div class="layui-card layui-form">
+                                                <input name="lan_pc_number" id="lan_pc_number" class="layui-input"
+                                                    placeholder="1,2" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="layui-col-md1">
+                                <div class="zksj">
+                                    展开 <img src="../zdry/img/jiantou3.png">
+                                </div>
+                                <div class="sqsj">
+                                    收起 <img src="../zdry/img/jiantou4.png">
+                                </div>
+                            </div> -->
+                            <div class="layui-col-md3">
+                                <button type="button" lay-submit lay-filter="formData"
+                                    class="layui-btn layui-btn-normal">
+                                    <i class="layui-icon layui-icon-addition"></i>
+                                    随机
+                                </button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                <button type="button" lay-submit lay-filter="formData1"
+                                    class="layui-btn layui-btn-normal">
+                                    <i class="layui-icon layui-icon-addition"></i>
+                                    提交
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-colla-item">
+                    <h2 class="layui-colla-title">数据展示</h2>
+                    <div class="layui-colla-content layui-show">
+                        <div class="layui-row mar-20">
+                            <div class="layui-col-md9 search1">
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">事件标题</label>
+                                        <div class="layui-inline layui-form">
+                                            <input name="sjbt" class="layui-input" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">事件内容</label>
+                                        <div class="layui-inline layui-form">
+                                            <input name="sjnr" class="layui-input" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">风险层级</label>
+                                        <div class="layui-inline layui-form">
+                                            <select name="fxcj" id="fxcj">
+                                                <option value=""></option>
+                                                <option value="1">县域</option>
+                                                <option value="2">市域</option>
+                                                <option value="3">省域</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">风险等级</label>
+                                        <div class="layui-inline layui-form">
+                                            <select name="fxdj" id="fxdj">
+                                                <option value=""></option>
+                                                <option value="1">高</option>
+                                                <option value="2">中</option>
+                                                <option value="3">低</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">开始时间</label>
+                                        <div class="layui-inline">
+                                            <div class="layui-card layui-form">
+                                                <input type="text" name="kssj" id="kssj" placeholder="请选择开始时间"
+                                                    autocomplete="off" class="layui-input" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">结束时间</label>
+                                        <div class="layui-inline">
+                                            <div class="layui-card layui-form">
+                                                <input type="text" name="jssj" id="jssj" placeholder="请选择结束时间"
+                                                    autocomplete="off" class="layui-input" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="layui-col-md1">
+                                <div class="zksj">
+                                    展开 <img src="../zdry/img/jiantou3.png">
+                                </div>
+                                <div class="sqsj">
+                                    收起 <img src="../zdry/img/jiantou4.png">
+                                </div>
+                            </div> -->
+                            <div class="layui-col-md3">
+                                <button type="button" lay-submit lay-filter="formData2"
+                                    class="layui-btn layui-btn-normal">
+                                    <i class="layui-icon layui-icon-search"></i>
+                                    查询
+                                </button>
+                                <button type="button" lay-submit lay-filter="formData3"
+                                    class="layui-btn layui-btn-normal">
+                                    <i class="layui-icon layui-icon-addition"></i>
+                                    新增
+                                </button>
+
+                            </div>
+                        </div>
+                        <div class="tabel_data">
+                            <table id="tableDate" lay-filter="tableDate"></table>
+                        </div>
+                        <script type="text/html" id="barDemo">
+
+                             <a class="layui-btn  layui-btn-xs" lay-event="delete" >删除</a>
+						
+                        </script>
+                        <script type="text/html" id="toolbarDemo">
+                            <div class="layui-btn-container">
+                                <a class="layui-btn layui-btn-sm" lay-event="checkStatus">
+                                    导出
+                                </a>
+                            </div>   
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</body>
+<script>
+    layui.config({
+        base: 'layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'console']);
+
+    layui.use(['jquery', 'table', 'form', 'element', 'excel'], function () {
+        var $ = layui.jquery;
+        var excel = layui.excel;
+        console.log($('#test').html());
+        var table = layui.table;
+        var element = layui.element;
+        var form = layui.form;
+        console.log(table);
+        element.on('collapse(form_zd)', function (data) {
+            console.log(data);
+
+            console.log(data.show);
+
+        })
+        //随机数字 （可排除部分数字）
+        form.on('submit(formData)', function (res) {
+            console.log(res);
+            var field = res.field;
+            var red_pc_number = $('#red_pc_number').val().replace(/，/g, ',').split(',')[0] == '' ? '' : $('#red_pc_number').val().replace(/，/g, ',').split(',');
+            var lan_pc_number = $('#lan_pc_number').val().replace(/，/g, ',').split(',')[0] == '' ? '' : $('#lan_pc_number').val().replace(/，/g, ',').split(',');
+            console.log(red_pc_number);
+            console.log(lan_pc_number);
+            var red_number = [];
+            var blue_number = [];
+            //生成数字范围
+            for (var index = 0; index < 33; index++) {
+                var flag = true;
+                if (red_pc_number.length != 0) {
+                    for (var j = 0; j < red_pc_number.length; j++) {//去掉不想要的数字
+                        // console.log(parseInt(red_pc_number[j]));
+                        // console.log(index+1);
+                        // console.log(parseInt(red_pc_number[j]) != index+1);
+                        if (parseInt(red_pc_number[j]) == index + 1) {
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
+                if (flag) {
+                    red_number.push(index + 1)
+                }
+            }
+            for (var index = 0; index < 16; index++) {
+                var flag = true;
+                if (lan_pc_number.length != 0) {
+                    for (var j = 0; j < lan_pc_number.length; j++) {
+                        // console.log(parseInt(red_pc_number[j]));
+                        // console.log(index+1);
+                        // console.log(parseInt(red_pc_number[j]) != index+1);
+                        if (parseInt(lan_pc_number[j]) == index + 1) {
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
+                if (flag) {
+                    blue_number.push(index + 1)
+                }
+            }
+            // console.log(blue_number);
+            var ran = parseInt(Math.random() * red_number.length);//随机数组的下标  （下标范围就是数组的长度）
+            $('#number1').val(red_number[ran]);
+            red_number.splice(ran, 1);
+            ran = parseInt(Math.random() * red_number.length);
+            $('#number2').val(red_number[ran]);
+            red_number.splice(ran, 1);
+            ran = parseInt(Math.random() * red_number.length);
+            $('#number3').val(red_number[ran]);
+            red_number.splice(ran, 1);
+            ran = parseInt(Math.random() * red_number.length);
+            $('#number4').val(red_number[ran]);
+            red_number.splice(ran, 1);
+            ran = parseInt(Math.random() * red_number.length);
+            $('#number5').val(red_number[ran]);
+            red_number.splice(ran, 1);
+            ran = parseInt(Math.random() * red_number.length);
+            $('#number6').val(red_number[ran]);
+            red_number.splice(ran, 1);
+
+
+            var blue_ran = parseInt(Math.random() * blue_number.length);
+            $('#lan_number').val(blue_number[blue_ran]);
+        })
+
+
+        var col_column = [];
+        col_column.unshift({ type: 'checkbox', width: '5%' })//插入
+        col_column.push({ field: 'red', title: 'red', align: 'center', width: '50%', edit: 'text' })//插入   
+        col_column.push({ field: 'blue', title: 'blue', align: 'center', width: '10%', edit: 'text' })//插入
+        col_column.push({ field: 'title', title: '操作', toolbar: '#barDemo', align: 'center', width: '20%' })
+
+        // col_column.
+        var table_data = table.render({
+            elem: '#tableDate',
+            id: 'tableDate',
+            method: 'post',
+            toolbar: '#toolbarDemo',
+            url: 'layuiadmin/json/console/top-card.js',
+            // url:'',
+            // page: true,
+            // even: even,
+            cols: [
+                col_column
+
+            ],
+            // done: function (res, curr, count) {
+            //     console.log(res);
+            //     var arr = res.data;
+            //     for (var index = 0; index < arr.length; index++) {
+            //         var element = arr[index];
+            //         console.log(element.SJCOUNT);
+            //         console.log(element.SJCOUNT != '0');
+            //         if (element.SJCOUNT != '0') {
+            //             if (sjxx_map.has(element.QBZTNRBH)) {
+            //                 if (sjxx_map.get(element.QBZTNRBH) == 1) {
+            //                     sjxx_map.set(element.QBZTNRBH, 0);
+            //                     $('#' + element.QBZTNRBH).attr("class", "button3  layui-btn-xs");
+            //                     $('#' + element.QBZTNRBH).attr("lay-event", "delete");
+            //                     $('#' + element.QBZTNRBH).text("取消物建");
+            //                 }
+            //             } else {
+            //                 sjxx_map.set(element.QBZTNRBH, 0);
+            //                 $('#' + element.QBZTNRBH).attr("class", "button3  layui-btn-xs");
+            //                 $('#' + element.QBZTNRBH).attr("lay-event", "delete");
+            //                 $('#' + element.QBZTNRBH).text("取消物建");
+            //             }
+            //         }
+            //     }
+            // }
+        });
+        table.on('tool(tableDate)', function (obj) {
+            var data = obj.data;
+            console.log(obj);
+            if (obj.event == 'del') {
+
+            } else if (obj.event == 'delete') {
+                obj.del();
+            }
+
+        });
+        table.on('toolbar(tableDate)', function (obj) {
+            console.log(obj);
+            var checkStatus = table.checkStatus(obj.config.id);
+            console.log(checkStatus);
+            if (obj.event == 'checkStatus') {
+                var list = obj.config.data;
+                list.unshift({ red: '红', blue: '蓝'});
+                var data = excel.filterExportData(list, [//列头顺序可以重新排列的函数
+                    'red',
+                    'blue',
+                ]);
+                excel.setExportCellStyle(data, 'A1:D1', {
+                    s: {
+                        // fill:{},
+                        alignment: {
+                            horizontal: 'center',
+                            vertical: 'center',
+                            wrapText: true,
+                        }
+
+                    }
+                })
+                // layer.close(index);
+                excel.exportExcel({
+                    sheet1: data
+                },  '随机号码.xlsx');
+            }
+
+        })
+
+        //新增一行
+        form.on('submit(formData1)', function (res) {
+            var field = res.field;
+            //排序
+            var cl_data = [field.number1, field.number2, field.number3, field.number4, field.number5, field.number6]
+            for (var i = 0; i < cl_data.length - 1; i++) {
+                for (var j = 0; j < cl_data.length - i - 1; j++) {
+                    if (parseInt(cl_data[j]) > parseInt(cl_data[j + 1])) {
+                        var temp = cl_data[j];
+                        cl_data[j] = cl_data[j + 1]
+                        cl_data[j + 1] = temp;
+                    }
+
+                }
+            }
+            var red_number = '';
+            for (var i = 0; i < cl_data.length; i++) {
+                red_number += cl_data[i] + " "
+            }
+            var newData = { red: red_number, blue: field.lan_number }
+            var oldData = table.cache['tableDate'];//从缓存中拿数据
+            console.log(oldData);
+            oldData.unshift(newData)
+            table_data.reload({
+                // page:{curr:1},
+                url: '',
+                data: oldData
+            })
+        })
+
+    })
+
+
+</script>
+
+</html>
