@@ -27,7 +27,7 @@
         <form class="layui-form">
             <div class="layui-collapse" lay-filter="form_zd">
                 <div class="layui-colla-item">
-                    <h2 class="layui-colla-title">随机表单数据</h2>
+                    <h2 class="layui-colla-title">表单数据</h2>
                     <div class="layui-colla-content layui-show">
                         <div class="layui-row mar-20">
                             <div class="layui-col-md12 search1">
@@ -35,13 +35,12 @@
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">类型</label>
                                         <div class="layui-inline">
-                                            <select name="lx" id="lx">
-                                                <option value=""></option>
-                                                <option value="1">排除号码随机</option>
-                                                <option value="2">全局随机</option>
-                                                <option value="3">机选+排除号码自选中间码</option>
-                                                <option value="4">选上期3个号码推演（套路一）</option>
-                                            </select>
+                                                <select name="lx" id="lx">
+                                                    <option value=""></option>
+                                                    <option value="1">排除号码随机</option>
+                                                    <option value="2">全局随机</option>
+                                                    <option value="3">机选+排除号码自选中间码</option>
+                                                </select>
                                         </div>
                                     </div>
                                 </div>
@@ -153,160 +152,6 @@
                                     <i class="layui-icon layui-icon-addition"></i>
                                     提交
                                 </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- 选择上期三个开奖号码为重叠码来推演 -->
-                <div class="layui-colla-item">
-                    <h2 class="layui-colla-title">选上期3个号码推演（套路一）</h2>
-                    <div class="layui-colla-content layui-show">
-                        <div class="layui-row">
-                            <div class="layui-col-md3">
-                                <div class="layui-form-item">
-                                    <label class="layui-form-label">上期号码：</label>
-                                    <div class="layui-inline layui-form">
-                                        <input name="kjhm" id="kjhm" class="layui-input" autocomplete="off"
-                                            value="2 5 16 17 18 25   06">
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="layui-row mar-20">
-                            <div class="layui-col-md12 search1">
-                                <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">重叠01</label>
-                                        <div class="layui-inline layui-form">
-                                            <input name="cd_number1" id="cd_number1" class="layui-input"
-                                                autocomplete="off">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">重叠02</label>
-                                        <div class="layui-inline layui-form">
-                                            <input name="cd_number2" id="cd_number2" class="layui-input"
-                                                autocomplete="off">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">重叠03</label>
-                                        <div class="layui-inline layui-form">
-                                            <input name="cd_number3" id="cd_number3" class="layui-input"
-                                                autocomplete="off">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">事件标题</label>
-                                        <div class="layui-inline layui-form">
-                                            <input name="tl01_number1" id="tl01_number1" class="layui-input"
-                                                autocomplete="off">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">事件内容</label>
-                                        <div class="layui-inline layui-form">
-                                            <input name="tl01_number2" id="tl01_number2" class="layui-input"
-                                                autocomplete="off">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">风险层级</label>
-                                        <div class="layui-inline layui-form">
-                                            <input name="tl01_number3" id="tl01_number3" class="layui-input"
-                                                autocomplete="off">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">风险等级</label>
-                                        <div class="layui-inline layui-form">
-                                            <input name="tl01_number4" id="tl01_number4" class="layui-input"
-                                                autocomplete="off">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">开始时间</label>
-                                        <div class="layui-inline">
-                                            <div class="layui-card layui-form">
-                                                <input name="tl01_number5" id="tl01_number5" class="layui-input"
-                                                    autocomplete="off">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">结束时间</label>
-                                        <div class="layui-inline">
-                                            <div class="layui-card layui-form">
-                                                <input name="tl01_number6" id="tl01_number6" class="layui-input"
-                                                    autocomplete="off">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">蓝</label>
-                                        <div class="layui-inline">
-                                            <div class="layui-card layui-form">
-                                                <input name="lan_tl01_number" id="lan_tl01_number" class="layui-input"
-                                                    autocomplete="off">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                 <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">排除1</label>
-                                        <div class="layui-inline">
-                                            <div class="layui-card layui-form">
-                                                <input name="red_pc_number" id="red_pc_number" class="layui-input"
-                                                    placeholder="1,2" autocomplete="off">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">排除2</label>
-                                        <div class="layui-inline">
-                                            <div class="layui-card layui-form">
-                                                <input name="lan_pc_number" id="lan_pc_number" class="layui-input"
-                                                    placeholder="1,2" autocomplete="off">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
-                            </div>
-
-                            <div class="layui-col-md3">
-                                <button type="button" lay-submit lay-filter="formData2"
-                                    class="layui-btn layui-btn-normal">
-                                    <i class="layui-icon layui-icon-addition"></i>
-                                    推演
-                                </button>
-                                <!--<button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                                <button type="button" lay-submit lay-filter="formData2"
-                                    class="layui-btn layui-btn-normal">
-                                    <i class="layui-icon layui-icon-addition"></i>
-                                    提交
-                                </button> -->
                             </div>
                         </div>
                     </div>
@@ -535,7 +380,6 @@
             // url:'',
             // page: true,
             // even: even,
-            limit: 1000,
             cols: [
                 col_column
 
@@ -581,7 +425,7 @@
             console.log(checkStatus);
             if (obj.event == 'checkStatus') {
                 var list = obj.config.data;
-                list.unshift({ red: '红', blue: '蓝', lx: '类型' });
+                list.unshift({ red: '红', blue: '蓝',lx:'类型'});
                 var data = excel.filterExportData(list, [//列头顺序可以重新排列的函数
                     'red',
                     'blue',
@@ -601,7 +445,7 @@
                 // layer.close(index);
                 excel.exportExcel({
                     sheet1: data
-                }, '随机号码.xlsx');
+                },  '随机号码.xlsx');
             }
 
         })
@@ -625,7 +469,7 @@
             for (var i = 0; i < cl_data.length; i++) {
                 red_number += cl_data[i] + " "
             }
-            var newData = { red: red_number, blue: field.lan_number, lx: $('#lx option:selected').text() }
+            var newData = { red: red_number, blue: field.lan_number,lx:$('#lx option:selected').text() }
             var oldData = table.cache['tableDate'];//从缓存中拿数据
             console.log(oldData);
             oldData.unshift(newData)
@@ -635,292 +479,8 @@
                 data: oldData
             })
         })
-        //新增一行 套路一
-        form.on('submit(formData2)', function (res) {
-            console.log(res);
-            var field = res.field;
-            //重叠码
-            var cd_number1 = parseInt(field.cd_number1);
-            var cd_number2 = parseInt(field.cd_number2);
-            var cd_number3 = parseInt(field.cd_number3);
-            var cd_numbers = [parseInt(field.cd_number1), parseInt(field.cd_number2), parseInt(field.cd_number3)]
-            var selected_number = [];
 
-            //叠连码  选1个：人工看自己看图    我这边是随机
-            selected_number.push(dlm(cd_number1, cd_number2, cd_number3));
-            //同位码  一般是间隔0,1,2,3步 如果重叠码为33 最好间隔1步  则为31  这时候同位码为01,11或21 选两个
-            twm_way(cd_numbers, selected_number);
-            //叠码选择
-            dm_xz(selected_number);
-            //筋斗码 : 12-21  13-31等
-            jdm_xz(selected_number)
-            //倍数码：7.12.32   7+12=19 32/8=4  4和19可选  太多了，不好计算 ？？？  
-            // var bs_get = [];
-            // for (var index = 0; index < selected_number.length; index++) {
-            //     var element = selected_number[index];
-            //     if(element <= 17){
-            //         bs_get.push(element);
-            //     }
-            // }
-            // bs_xz(selected_number);
-            //常用组合号码 http://www.360doc.com/content/18/1218/21/6610157_802737278.shtml
-            
-
-            zh_xz(selected_number);
-
-            selected_number = unique(selected_number)//去重
-            mp(selected_number)//排序
-            console.log(selected_number);
-            var newData = { red: selected_number, blue: field.lan_number, lx: $('#lx option:selected').text() }
-            var oldData = table.cache['tableDate'];//从缓存中拿数据
-            // console.log(oldData);
-            oldData.unshift(newData)
-            table_data.reload({
-                // page:{curr:1},
-                url: '',
-                data: oldData
-            })
-
-        })
     })
-
-
-    //叠连码  选1个：人工看自己看图    我这边是随机
-    function dlm(cd_number1, cd_number2, cd_number3) {
-        var dl_number = [];
-        var xb = 0;
-        if (cd_number1 == 1) {
-            dl_number[xb] = 2
-        } else if (cd_number1 == 33) {
-            dl_number[xb] = 32
-        } else {
-            dl_number[xb] = cd_number1 - 1;
-            xb += 1;
-            dl_number[xb] = cd_number1 + 1;
-        }
-        xb += 1;
-        if (cd_number2 == 1) {
-            dl_number[xb] = 2
-        } else if (cd_number2 == 33) {
-            dl_number[xb] = 32
-        } else {
-            dl_number[xb] = cd_number2 - 1;
-            xb += 1;
-            dl_number[xb] = cd_number2 + 1;
-        }
-        xb += 1;
-        if (cd_number3 == 1) {
-            dl_number[xb] = 2
-        } else if (cd_number3 == 33) {
-            dl_number[xb] = 32
-        } else {
-            dl_number[xb] = cd_number3 - 1;
-            xb += 1;
-            dl_number[xb] = cd_number3 + 1;
-        }
-        dl_number.sort();
-        dl_number = unique(dl_number);
-        var cd_xb = createRand(0, dl_number.length)//重叠书随机下标
-        // console.log(dl_number);
-        // console.log(dl_number[cd_xb]);
-        return dl_number[cd_xb];
-    }
-    //同位码  一般是间隔0,1,2,3步 如果重叠码为33 最好间隔1步  则为31  这时候同位码为01,11或21 选两个
-    function twm_way(cd_numbers, selected_number) {
-        var tw_random = cd_numbers[createRand(0, cd_numbers.length)];//三个重叠码随机选一个
-        var tw_selected;
-        //计算同位码
-        if (tw_random == 1) {
-            tw_selected = 2
-        } else if (tw_random == 33) {
-            tw_selected = 32
-        } else {
-            tw_selected = tw_random - 1;
-            // Math.floor(tw_selected/10);
-            // tw_selected = tw_random + 1;
-        }
-        var twm = [tw_selected, tw_selected % 10, tw_selected % 10 + 10, tw_selected % 10 + 20] //同位码结果
-        if (tw_selected % 10 <= 3) {
-            twm.push(tw_selected % 10 + 30)
-        }
-        twm = unique(twm);
-        var sj = twm[createRand(0, twm.length)];
-        selected_number.push(sj);
-        twm.remove_arr(sj);//删掉选出来的，下面再随机一个
-        selected_number.push(twm[createRand(0, twm.length)]);
-    }
-    //叠码选择
-    function dm_xz(selected_number) {
-        var szm_arr = [11, 22, 33]
-        var szm_arr1 = []
-        for (var index = 0; index < szm_arr.length; index++) {
-            var element = szm_arr[index];
-            if (selected_number.indexOf(element) > -1) {//是否存在叠码
-                szm_arr1.push(element)
-            }
-        }
-        if (szm_arr1.length == 1) {//只有一个时候才可以选择另一个
-            szm_arr.remove_arr(szm_arr1[0]);//删除本身
-            selected_number.push(szm_arr[createRand(0, szm_arr.length)]);//两个随机一个
-        }
-    }
-    //筋斗码 : 12-21  13-31等
-    function jdm_xz(selected_number) {
-        var jdm_arr = [1, 10, 2, 20, 3, 30, 12, 21, 13, 31, 23, 32]
-        var jdm_selected = [];
-        var map = new Map();
-        map.set(1, 10); map.set(10, 1);
-        map.set(2, 20); map.set(20, 2);
-        map.set(3, 30); map.set(30, 3);
-        map.set(12, 21); map.set(21, 12);
-        map.set(13, 31); map.set(31, 13);
-        map.set(23, 32); map.set(32, 23);
-        for (var index = 0; index < jdm_arr.length; index++) {
-            var element = jdm_arr[index];
-            if (selected_number.indexOf(element) > -1) {
-                jdm_selected.push(map.get(element))
-            }
-        }
-        // for (var index = 0; index < jdm_selected.length; index++) {
-        //     var element = jdm_selected[index];
-        //     selected_number.push(parseInt(element))
-        // }
-        // selected_number.push.apply(selected_number, jdm_selected);
-        selected_number.push(...jdm_selected);
-    }
-   //组合 
-    function zh_xz(selected_number){
-        /**
-             * 天地线：1-5-11-15-18-22-28-32
-             * 水火线：3-7-9-13-20-24-26-30
-             * 木雷线：2-6-10-14-19-23-27-31
-             * 山泽线：4-8-12-16-17-21-25-29
-             * 
-             * 1-33太极：首先分出奇偶就是两仪
-             * 再把两仪分化为四象
-             * 一象：1-5-9-11-13-17-21-25
-             * 二象：2-6-10-14-18-22-26-30
-             * 三象：3-7-11-15-19-23-27-31
-             * 四象：4-8-12-16-20-24-32
-             * 黄金号码：6-7-12-13-16-17-20-21-24-32 
-             * 黄金号码组合：
-             * 9码常出：4-5-13-14-20-21-27-28-29
-             * 万能11码：1-5-9-10-14-15-20-25-29-30-32
-             * 
-             */
-             var tdx = [1, 5, 11, 15, 18, 22, 28, 32]
-            var shx = [3, 7, 9, 13, 20, 24, 26, 30];
-            var mlx = [2, 6, 10, 14, 19, 23, 27, 31];
-            var szx = [4, 8, 12, 16, 17, 21, 25, 29];
-            var tdx_pp = [];
-            var shx_pp = [];
-            var mlx_pp = [];
-            var szx_pp = [];
-            for (var index = 0; index < selected_number.length; index++) {
-                var element = selected_number[index];
-                if (tdx.indexOf(element) > -1) {//是否有匹配的
-                    tdx_pp.push(element)
-                }
-            }
-            for (var index = 0; index < selected_number.length; index++) {
-                var element = selected_number[index];
-                if (shx.indexOf(element) > -1) {//是否有匹配的
-                    shx_pp.push(element)
-                }
-            }
-            for (var index = 0; index < selected_number.length; index++) {
-                var element = selected_number[index];
-                if (mlx.indexOf(element) > -1) {//是否有匹配的
-                    mlx_pp.push(element)
-                }
-            }
-            for (var index = 0; index < selected_number.length; index++) {
-                var element = selected_number[index];
-                if (szx.indexOf(element) > -1) {//是否有匹配的
-                    szx_pp.push(element)
-                }
-            }
-            var map = new Map();
-            var map1 = new Map();
-            map.set(tdx_pp.length, tdx_pp)
-            map.set(shx_pp.length, shx_pp)
-            map.set(mlx_pp.length, mlx_pp)
-            map.set(szx_pp.length, szx_pp)
-            map1.set(tdx_pp.length, tdx)
-            map1.set(shx_pp.length, shx)
-            map1.set(mlx_pp.length, mlx)
-            map1.set(szx_pp.length, szx)
-            var pc = [tdx_pp, shx_pp.length, mlx_pp.length, szx_pp.length]
-            mp(pc);
-            var selected_arr = map.get(pc[3]);//最大的那个是最多的
-            if(selected_arr!=undefined&&  selected_arr.length>0){
-
-                var new_arr = del_arr(map1.get(pc[3]), selected_arr);
-                if (new_arr.length > 0) {
-                    if (new_arr.length > 1) {
-                        var sj01 = new_arr[createRand(0, new_arr.length)];
-                        selected_number.push(sj01);//生成一个随机
-                        new_arr.remove_arr(sj01);
-                        console.log(new_arr);
-                        var sj02 = new_arr[createRand(0, new_arr.length)];
-                        selected_number.push(sj02);//生成一个随机
-                    } else {
-                        var sj01 = new_arr[createRand(0, new_arr.length)];
-                        selected_number.push(sj01);//生成一个随机
-                    }
-                }
-            }
-    }
-    //数组去重
-    function unique(arr) {
-        return Array.from(new Set(arr))
-    }
-    //生成随机数的范围
-    function createRand(min, max) {
-        return Math.floor(min + Math.random() * (max - min));
-    }
-    //删除数组指定元素
-
-    Array.prototype.indexOf = function (val) {
-        for (var i = 0; i < this.length; i++) {
-            if (this[i] == val) return i;
-        }
-        return -1;
-    };
-    Array.prototype.remove_arr = function (val) {
-        var index = this.indexOf(val);
-        if (index > -1) {
-            this.splice(index, 1);
-        }
-    };
-    //冒泡排序
-    function mp(cl_data) {
-        for (var i = 0; i < cl_data.length - 1; i++) {
-            for (var j = 0; j < cl_data.length - i - 1; j++) {
-                if (parseInt(cl_data[j]) > parseInt(cl_data[j + 1])) {
-                    var temp = cl_data[j];
-                    cl_data[j] = cl_data[j + 1]
-                    cl_data[j + 1] = temp;
-                }
-
-            }
-        }
-    }
-    // 从一个数组中删除另一个数组中存在的元素
-    function del_arr(arr, to_remove) {
-        console.log(arr);
-        for (let i = arr.length - 1; i >= 0; i--) {
-            for (let j = 0; j < to_remove.length; j++) {
-                if (arr[i] == to_remove[j]) {
-                    arr.splice(i, 1);
-                }
-            }
-        }
-        return arr
-    }
-
-
-
 
 
 </script>
