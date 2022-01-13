@@ -41,6 +41,8 @@
                                                 <option value="2">全局随机</option>
                                                 <option value="3">机选+排除号码自选中间码</option>
                                                 <option value="4">选上期3个号码推演（套路一）</option>
+                                                <option value="5">和值推演（套路二）</option>
+                                                <option value="6">篮球杀号</option>
                                             </select>
                                         </div>
                                     </div>
@@ -167,11 +169,10 @@
                                     <label class="layui-form-label">上期号码：</label>
                                     <div class="layui-inline layui-form">
                                         <input name="kjhm" id="kjhm" class="layui-input" autocomplete="off"
-                                            value="2 5 16 17 18 25   06">
+                                            placeholder="2,5,16,17,18,25+6">
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="layui-row mar-20">
                             <div class="layui-col-md12 search1">
@@ -202,111 +203,77 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">事件标题</label>
-                                        <div class="layui-inline layui-form">
-                                            <input name="tl01_number1" id="tl01_number1" class="layui-input"
-                                                autocomplete="off">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">事件内容</label>
-                                        <div class="layui-inline layui-form">
-                                            <input name="tl01_number2" id="tl01_number2" class="layui-input"
-                                                autocomplete="off">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">风险层级</label>
-                                        <div class="layui-inline layui-form">
-                                            <input name="tl01_number3" id="tl01_number3" class="layui-input"
-                                                autocomplete="off">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">风险等级</label>
-                                        <div class="layui-inline layui-form">
-                                            <input name="tl01_number4" id="tl01_number4" class="layui-input"
-                                                autocomplete="off">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">开始时间</label>
-                                        <div class="layui-inline">
-                                            <div class="layui-card layui-form">
-                                                <input name="tl01_number5" id="tl01_number5" class="layui-input"
-                                                    autocomplete="off">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">结束时间</label>
-                                        <div class="layui-inline">
-                                            <div class="layui-card layui-form">
-                                                <input name="tl01_number6" id="tl01_number6" class="layui-input"
-                                                    autocomplete="off">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">蓝</label>
-                                        <div class="layui-inline">
-                                            <div class="layui-card layui-form">
-                                                <input name="lan_tl01_number" id="lan_tl01_number" class="layui-input"
-                                                    autocomplete="off">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                 <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">排除1</label>
-                                        <div class="layui-inline">
-                                            <div class="layui-card layui-form">
-                                                <input name="red_pc_number" id="red_pc_number" class="layui-input"
-                                                    placeholder="1,2" autocomplete="off">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="layui-col-md3">
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">排除2</label>
-                                        <div class="layui-inline">
-                                            <div class="layui-card layui-form">
-                                                <input name="lan_pc_number" id="lan_pc_number" class="layui-input"
-                                                    placeholder="1,2" autocomplete="off">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
                             </div>
 
                             <div class="layui-col-md3">
                                 <button type="button" lay-submit lay-filter="formData2"
                                     class="layui-btn layui-btn-normal">
                                     <i class="layui-icon layui-icon-addition"></i>
-                                    推演
+                                    重叠码推演
                                 </button>
-                                <!--<button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                                <button type="button" lay-submit lay-filter="formData2"
+                                <button type="button" lay-submit lay-filter="formData3"
                                     class="layui-btn layui-btn-normal">
                                     <i class="layui-icon layui-icon-addition"></i>
-                                    提交
-                                </button> -->
+                                    和值推演
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 选择上期三个开奖号码为重叠码来推演 -->
+                <div class="layui-colla-item">
+                    <h2 class="layui-colla-title">蓝球杀号</h2>
+                    <div class="layui-colla-content layui-show">
+
+                        <div class="layui-row mar-20">
+                            <div class="layui-col-md12 search1">
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">上一期蓝：</label>
+                                        <div class="layui-inline layui-form">
+                                            <input name="sq_number" id="sq_number" class="layui-input"
+                                                autocomplete="off" value="14">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">上两期蓝：</label>
+                                        <div class="layui-inline layui-form">
+                                            <input name="sq_number1" id="sq_number1" class="layui-input"
+                                                autocomplete="off" value="6">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">上三期蓝：</label>
+                                        <div class="layui-inline layui-form">
+                                            <input name="sq_number2" id="sq_number2" class="layui-input"
+                                                autocomplete="off" value="8">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">上四期蓝：</label>
+                                        <div class="layui-inline layui-form">
+                                            <input name="sq_number3" id="sq_number3" class="layui-input"
+                                                autocomplete="off" value="3">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="layui-col-md3">
+                                <button type="button" lay-submit lay-filter="formData4"
+                                    class="layui-btn layui-btn-normal">
+                                    <i class="layui-icon layui-icon-addition"></i>
+                                    杀号计算
+                                </button>
+
                             </div>
                         </div>
                     </div>
@@ -390,12 +357,12 @@
                                 </div>
                             </div> -->
                             <div class="layui-col-md3">
-                                <button type="button" lay-submit lay-filter="formData2"
+                                <button type="button" lay-submit lay-filter="formData_cx"
                                     class="layui-btn layui-btn-normal">
                                     <i class="layui-icon layui-icon-search"></i>
                                     查询
                                 </button>
-                                <button type="button" lay-submit lay-filter="formData3"
+                                <button type="button" lay-submit lay-filter="formData_xz"
                                     class="layui-btn layui-btn-normal">
                                     <i class="layui-icon layui-icon-addition"></i>
                                     新增
@@ -520,7 +487,7 @@
 
         var col_column = [];
         col_column.unshift({ type: 'checkbox', width: '5%' })//插入
-        col_column.push({ field: 'red', title: 'red', align: 'center', width: '35%', edit: 'text' })//插入   
+        col_column.push({ field: 'red', title: 'red', align: 'center', width: '50%', edit: 'text' })//插入   
         col_column.push({ field: 'blue', title: 'blue', align: 'center', width: '10%', edit: 'text' })//插入
         col_column.push({ field: 'lx', title: 'lx', align: 'center', width: '15%', edit: 'text' })//插入
         col_column.push({ field: 'title', title: '操作', toolbar: '#barDemo', align: 'center', width: '20%' })
@@ -572,6 +539,21 @@
 
             } else if (obj.event == 'delete') {
                 obj.del();
+                var list = table.cache['tableDate'];//从缓存中拿数据
+                //去除空数组
+                for (var index = 0; index < list.length; index++) {
+                    var element = list[index];
+                    if (element.length == 0) {
+                        list.remove_arr(element)
+                    }
+                }
+                console.log(list);
+                //重新渲染列表信息
+                table_data.reload({
+                    // page:{curr:1},
+                    url: '',
+                    data: list
+                })
             }
 
         });
@@ -580,8 +562,11 @@
             var checkStatus = table.checkStatus(obj.config.id);
             console.log(checkStatus);
             if (obj.event == 'checkStatus') {
-                var list = obj.config.data;
+                var list = [];//先定义一个空数组，每次导出都会清空  -- 防止了第二次导出会出现多次列名
+                console.log(obj.config.data);
+                list.push(...obj.config.data);
                 list.unshift({ red: '红', blue: '蓝', lx: '类型' });
+                console.log(list);
                 var data = excel.filterExportData(list, [//列头顺序可以重新排列的函数
                     'red',
                     'blue',
@@ -635,7 +620,7 @@
                 data: oldData
             })
         })
-        //新增一行 套路一
+        //新增一行 套路一 : 重叠码推演
         form.on('submit(formData2)', function (res) {
             console.log(res);
             var field = res.field;
@@ -645,15 +630,15 @@
             var cd_number3 = parseInt(field.cd_number3);
             var cd_numbers = [parseInt(field.cd_number1), parseInt(field.cd_number2), parseInt(field.cd_number3)]
             var selected_number = [];
-
+            var all_result_fx = [];
             //叠连码  选1个：人工看自己看图    我这边是随机
-            selected_number.push(dlm(cd_number1, cd_number2, cd_number3));
+            selected_number.push(dlm(cd_number1, cd_number2, cd_number3, all_result_fx));
             //同位码  一般是间隔0,1,2,3步 如果重叠码为33 最好间隔1步  则为31  这时候同位码为01,11或21 选两个
-            twm_way(cd_numbers, selected_number);
+            twm_way(cd_numbers, selected_number, all_result_fx);
             //叠码选择
-            dm_xz(selected_number);
+            dm_xz(selected_number, all_result_fx);
             //筋斗码 : 12-21  13-31等
-            jdm_xz(selected_number)
+            jdm_xz(selected_number, all_result_fx)
             //倍数码：7.12.32   7+12=19 32/8=4  4和19可选  太多了，不好计算 ？？？  
             // var bs_get = [];
             // for (var index = 0; index < selected_number.length; index++) {
@@ -664,14 +649,12 @@
             // }
             // bs_xz(selected_number);
             //常用组合号码 http://www.360doc.com/content/18/1218/21/6610157_802737278.shtml
-            
-
-            zh_xz(selected_number);
+            zh_xz(selected_number, all_result_fx);
 
             selected_number = unique(selected_number)//去重
             mp(selected_number)//排序
             console.log(selected_number);
-            var newData = { red: selected_number, blue: field.lan_number, lx: $('#lx option:selected').text() }
+            var newData = { red: selected_number + all_result_fx, blue: field.lan_number, lx: $('#lx option:selected').text() }
             var oldData = table.cache['tableDate'];//从缓存中拿数据
             // console.log(oldData);
             oldData.unshift(newData)
@@ -682,11 +665,153 @@
             })
 
         })
+        //新增一行 套路二  和值推演
+        form.on('submit(formData3)', function (res) {
+            console.log(res);
+            var field = res.field;
+            //计算和值
+            var kjhm = field.kjhm.replace(/，/g, ',').substring(0, field.kjhm.lastIndexOf("+"));
+            var kjhms = kjhm.split(",");
+            var hz = 0;
+            for (var index = 0; index < kjhms.length; index++) {
+                var element = kjhms[index];
+                hz += parseInt(element)
+            }
+            var yz = []; //计算商，小数点后面不要
+            for (var index = 0; index < kjhms.length; index++) {
+                var element = kjhms[index];
+                var sz = Math.floor((hz - element) / element);//取商值，小数点后面不要
+                var weihao = sz >= 10 ? sz % 10 : sz;//取尾号
+                yz.push(weihao);
+            }
+            yz = unique(yz)//去重
+            mp(yz)//排序
+            var selected_number = []; //关于计算后的尾号所有的号码陈列
+            for (var index = 0; index < yz.length; index++) {
+                var element = yz[index];
+                if (element > 3) {
+                    for (var j = 0; j < 3; j++) {
+                        selected_number.push(j + "" + element);
+                    }
+                } else {
+                    for (var j = 0; j < 4; j++) {
+                        selected_number.push(j + "" + element);
+                    }
+                }
+            }
+            //如果上期没有遗传号（本期就找和上期重叠的号码），本期很可能出现反之 ？？ 标记一下
+
+
+            selected_number = unique(selected_number)//去重
+            mp(selected_number)//排序
+            console.log(selected_number + "");
+            var newData = { red: selected_number + "", blue: field.lan_number, lx: $('#lx option:selected').text() }
+            var oldData = table.cache['tableDate'];//从缓存中拿数据
+            // console.log(oldData);
+            oldData.unshift(newData)
+            table_data.reload({
+                // page:{curr:1},
+                url: '',
+                data: oldData
+            })
+
+        })
+
+        //新增一行 蓝色套路  杀号
+        form.on('submit(formData4)', function (res) {
+            console.log(res);
+            var field = res.field;
+            //重叠码
+            var selected_number = []; //关于计算后的尾号所有的号码陈列
+            var sq_number = parseInt(field.sq_number);//上1期
+            var sq_number1 = parseInt(field.sq_number1);//上2期
+            var sq_number2 = parseInt(field.sq_number2);//上3期
+            var sq_number3 = parseInt(field.sq_number3);//上4期
+            //a+b 绝杀法： 一位直接杀，两位取尾号杀，和为0杀10
+            var hz = sq_number + sq_number1;
+            console.log(hz);
+            if (hz < 10) {
+                selected_number.push({ "杀上期+上2期(99%)": hz });
+            } else if (hz % 10 == 0) {
+                selected_number.push({ "杀上期+上2期(99%)": 10 });
+            } else if (hz > 10) {
+                selected_number.push({ "杀上期+上2期(99%)": hz % 10 });
+            }
+            //a+16 绝杀法： 一位直接杀，两位取尾号杀，和为0杀10
+            var hz01 = sq_number + 16;
+            if (hz01 < 10) {
+                selected_number.push({ "杀上期+16(95%)": hz01 });
+            } else if (hz01 % 10 == 0) {
+                selected_number.push({ "杀上期+16(95%)": 10 });
+            } else if (hz01 > 10) {
+                selected_number.push({ "杀上期+16(95%)": hz01 % 10 });
+            }
+            //a+b+c 绝杀法： 一位直接杀，两位取尾号杀，和为0杀10
+            var hz02 = sq_number + sq_number1 + sq_number2;
+            if (hz02 < 10) {
+                selected_number.push({ "杀上期+上2期+上3期(100%)": hz02 });
+            } else if (hz02 % 10 == 0) {
+                selected_number.push({ "杀上期+上2期+上3期(100%)": 10 });
+            } else if (hz02 > 10) {
+                selected_number.push({ "杀上期+上2期+上3期(100%)": hz02 % 10 });
+            }
+            //a+b+c+d 绝杀法： 一位直接杀，两位取尾号杀，和为0杀10
+            var hz03 = sq_number + sq_number1 + sq_number2;
+            if (hz03 < 10) {
+                selected_number.push({ "杀上期+上2期+上3期+上4期(98%)": hz03 });
+            } else if (hz03 % 10 == 0) {
+                selected_number.push({ "杀上期+上2期+上3期+上4期(98%)": 10 });
+            } else if (hz03 > 10) {
+                selected_number.push({ "杀上期+上2期+上3期+上4期(98%)": hz03 % 10 });
+            }
+            //上期6红+蓝值的和值 绝杀法： 一位直接杀，两位取尾号杀，和为0杀10
+            var kjhm = field.kjhm.replace(/，/g, ',').substring(0, field.kjhm.lastIndexOf("+"));
+            var kjhms = kjhm.split(",");
+            var hz04 = 0;
+            for (var index = 0; index < kjhms.length; index++) {
+                var element = kjhms[index];
+                hz04 += parseInt(element)
+            }
+            hz04+=sq_number;//和值
+            if (hz04 < 10) {
+                selected_number.push({ "杀上期6红+蓝值的和值(96%)": hz04 });
+            } else if (hz04 % 10 == 0) {
+                selected_number.push({ "杀上期6红+蓝值的和值(96%)": 10 });
+            } else if (hz04 > 10) {
+                selected_number.push({ "杀上期6红+蓝值的和值(96%)": hz04 % 10 });
+            }
+             //s+g 绝杀法： 一位直接杀，两位取尾号杀，和为0杀10
+             var hz03 = sq_number + sq_number1 + sq_number2;
+            if (hz03 < 10) {
+                selected_number.push({ "杀上期+上2期+上3期+上4期(98%)": hz03 });
+            } else if (hz03 % 10 == 0) {
+                selected_number.push({ "杀上期+上2期+上3期+上4期(98%)": 10 });
+            } else if (hz03 > 10) {
+                selected_number.push({ "杀上期+上2期+上3期+上4期(98%)": hz03 % 10 });
+            }
+            console.log(selected_number);
+            // selected_number = unique(selected_number)//去重
+            // mp(selected_number)//排序
+            // console.log(selected_number+"");
+            // var newData = { red: selected_number+"", blue: field.lan_number, lx: $('#lx option:selected').text() }
+            // var oldData = table.cache['tableDate'];//从缓存中拿数据
+            // // console.log(oldData);
+            // oldData.unshift(newData)
+            // table_data.reload({
+            //     // page:{curr:1},
+            //     url: '',
+            //     data: oldData
+            // })
+
+        })
+
     })
 
 
+
+
     //叠连码  选1个：人工看自己看图    我这边是随机
-    function dlm(cd_number1, cd_number2, cd_number3) {
+    function dlm(cd_number1, cd_number2, cd_number3, all_result_fx) {
         var dl_number = [];
         var xb = 0;
         if (cd_number1 == 1) {
@@ -723,10 +848,11 @@
         var cd_xb = createRand(0, dl_number.length)//重叠书随机下标
         // console.log(dl_number);
         // console.log(dl_number[cd_xb]);
+        all_result_fx.push("{叠连码:" + dl_number + "}");
         return dl_number[cd_xb];
     }
     //同位码  一般是间隔0,1,2,3步 如果重叠码为33 最好间隔1步  则为31  这时候同位码为01,11或21 选两个
-    function twm_way(cd_numbers, selected_number) {
+    function twm_way(cd_numbers, selected_number, all_result_fx) {
         var tw_random = cd_numbers[createRand(0, cd_numbers.length)];//三个重叠码随机选一个
         var tw_selected;
         //计算同位码
@@ -748,9 +874,10 @@
         selected_number.push(sj);
         twm.remove_arr(sj);//删掉选出来的，下面再随机一个
         selected_number.push(twm[createRand(0, twm.length)]);
+        all_result_fx.push("{同位码:" + twm + "}");
     }
     //叠码选择
-    function dm_xz(selected_number) {
+    function dm_xz(selected_number, all_result_fx) {
         var szm_arr = [11, 22, 33]
         var szm_arr1 = []
         for (var index = 0; index < szm_arr.length; index++) {
@@ -759,13 +886,16 @@
                 szm_arr1.push(element)
             }
         }
+        szm_arr.remove_arr(szm_arr1[0]);//删除本身
         if (szm_arr1.length == 1) {//只有一个时候才可以选择另一个
-            szm_arr.remove_arr(szm_arr1[0]);//删除本身
             selected_number.push(szm_arr[createRand(0, szm_arr.length)]);//两个随机一个
+        }
+        if (szm_arr1.length > 0) {//大于0才有联系 才有选择意义
+            all_result_fx.push("{叠码:" + szm_arr + "}");
         }
     }
     //筋斗码 : 12-21  13-31等
-    function jdm_xz(selected_number) {
+    function jdm_xz(selected_number, all_result_fx) {
         var jdm_arr = [1, 10, 2, 20, 3, 30, 12, 21, 13, 31, 23, 32]
         var jdm_selected = [];
         var map = new Map();
@@ -787,9 +917,10 @@
         // }
         // selected_number.push.apply(selected_number, jdm_selected);
         selected_number.push(...jdm_selected);
+        all_result_fx.push("{筋斗码:" + jdm_selected + "}");
     }
-   //组合 
-    function zh_xz(selected_number){
+    //组合 http://www.360doc.com/content/18/1218/21/6610157_802737278.shtml
+    function zh_xz(selected_number, all_result_fx) {
         /**
              * 天地线：1-5-11-15-18-22-28-32
              * 水火线：3-7-9-13-20-24-26-30
@@ -808,68 +939,68 @@
              * 万能11码：1-5-9-10-14-15-20-25-29-30-32
              * 
              */
-             var tdx = [1, 5, 11, 15, 18, 22, 28, 32]
-            var shx = [3, 7, 9, 13, 20, 24, 26, 30];
-            var mlx = [2, 6, 10, 14, 19, 23, 27, 31];
-            var szx = [4, 8, 12, 16, 17, 21, 25, 29];
-            var tdx_pp = [];
-            var shx_pp = [];
-            var mlx_pp = [];
-            var szx_pp = [];
-            for (var index = 0; index < selected_number.length; index++) {
-                var element = selected_number[index];
-                if (tdx.indexOf(element) > -1) {//是否有匹配的
-                    tdx_pp.push(element)
-                }
+        var tdx = [1, 5, 11, 15, 18, 22, 28, 32]
+        var shx = [3, 7, 9, 13, 20, 24, 26, 30];
+        var mlx = [2, 6, 10, 14, 19, 23, 27, 31];
+        var szx = [4, 8, 12, 16, 17, 21, 25, 29];
+        var tdx_pp = [];
+        var shx_pp = [];
+        var mlx_pp = [];
+        var szx_pp = [];
+        for (var index = 0; index < selected_number.length; index++) {
+            var element = selected_number[index];
+            if (tdx.indexOf(element) > -1) {//是否有匹配的
+                tdx_pp.push(element)
             }
-            for (var index = 0; index < selected_number.length; index++) {
-                var element = selected_number[index];
-                if (shx.indexOf(element) > -1) {//是否有匹配的
-                    shx_pp.push(element)
-                }
+        }
+        for (var index = 0; index < selected_number.length; index++) {
+            var element = selected_number[index];
+            if (shx.indexOf(element) > -1) {//是否有匹配的
+                shx_pp.push(element)
             }
-            for (var index = 0; index < selected_number.length; index++) {
-                var element = selected_number[index];
-                if (mlx.indexOf(element) > -1) {//是否有匹配的
-                    mlx_pp.push(element)
-                }
+        }
+        for (var index = 0; index < selected_number.length; index++) {
+            var element = selected_number[index];
+            if (mlx.indexOf(element) > -1) {//是否有匹配的
+                mlx_pp.push(element)
             }
-            for (var index = 0; index < selected_number.length; index++) {
-                var element = selected_number[index];
-                if (szx.indexOf(element) > -1) {//是否有匹配的
-                    szx_pp.push(element)
-                }
+        }
+        for (var index = 0; index < selected_number.length; index++) {
+            var element = selected_number[index];
+            if (szx.indexOf(element) > -1) {//是否有匹配的
+                szx_pp.push(element)
             }
-            var map = new Map();
-            var map1 = new Map();
-            map.set(tdx_pp.length, tdx_pp)
-            map.set(shx_pp.length, shx_pp)
-            map.set(mlx_pp.length, mlx_pp)
-            map.set(szx_pp.length, szx_pp)
-            map1.set(tdx_pp.length, tdx)
-            map1.set(shx_pp.length, shx)
-            map1.set(mlx_pp.length, mlx)
-            map1.set(szx_pp.length, szx)
-            var pc = [tdx_pp, shx_pp.length, mlx_pp.length, szx_pp.length]
-            mp(pc);
-            var selected_arr = map.get(pc[3]);//最大的那个是最多的
-            if(selected_arr!=undefined&&  selected_arr.length>0){
-
-                var new_arr = del_arr(map1.get(pc[3]), selected_arr);
-                if (new_arr.length > 0) {
-                    if (new_arr.length > 1) {
-                        var sj01 = new_arr[createRand(0, new_arr.length)];
-                        selected_number.push(sj01);//生成一个随机
-                        new_arr.remove_arr(sj01);
-                        console.log(new_arr);
-                        var sj02 = new_arr[createRand(0, new_arr.length)];
-                        selected_number.push(sj02);//生成一个随机
-                    } else {
-                        var sj01 = new_arr[createRand(0, new_arr.length)];
-                        selected_number.push(sj01);//生成一个随机
-                    }
+        }
+        var map = new Map();
+        var map1 = new Map();
+        map.set(tdx_pp.length, tdx_pp)
+        map.set(shx_pp.length, shx_pp)
+        map.set(mlx_pp.length, mlx_pp)
+        map.set(szx_pp.length, szx_pp)
+        map1.set(tdx_pp.length, tdx)
+        map1.set(shx_pp.length, shx)
+        map1.set(mlx_pp.length, mlx)
+        map1.set(szx_pp.length, szx)
+        var pc = [tdx_pp, shx_pp.length, mlx_pp.length, szx_pp.length]
+        mp(pc);
+        var selected_arr = map.get(pc[3]);//最大的那个是最多的
+        if (pc[3] < 3 && selected_arr != undefined && selected_arr.length > 0) {
+            var new_arr = del_arr(map1.get(pc[3]), selected_arr);
+            if (new_arr.length > 0) {
+                if (new_arr.length > 1) {
+                    var sj01 = new_arr[createRand(0, new_arr.length)];
+                    selected_number.push(sj01);//生成一个随机
+                    new_arr.remove_arr(sj01);
+                    console.log(new_arr);
+                    var sj02 = new_arr[createRand(0, new_arr.length)];
+                    selected_number.push(sj02);//生成一个随机
+                } else {
+                    var sj01 = new_arr[createRand(0, new_arr.length)];
+                    selected_number.push(sj01);//生成一个随机
                 }
+                all_result_fx.push("{组合码:" + new_arr + "}");
             }
+        }
     }
     //数组去重
     function unique(arr) {
