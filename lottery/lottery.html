@@ -143,7 +143,7 @@
                                     收起 <img src="../zdry/img/jiantou4.png">
                                 </div>
                             </div> -->
-                            <div class="layui-col-md3">
+                            <div class="layui-col-md12">
                                 <button type="button" lay-submit lay-filter="formData"
                                     class="layui-btn layui-btn-normal">
                                     <i class="layui-icon layui-icon-addition"></i>
@@ -154,6 +154,16 @@
                                     class="layui-btn layui-btn-normal">
                                     <i class="layui-icon layui-icon-addition"></i>
                                     提交
+                                </button>
+                                <button type="button" lay-submit lay-filter="formData5"
+                                    class="layui-btn layui-btn-normal">
+                                    <i class="layui-icon layui-icon-addition"></i>
+                                    确认缓存
+                                </button>
+                                <button type="button" lay-submit lay-filter="formData6"
+                                    class="layui-btn layui-btn-normal">
+                                    <i class="layui-icon layui-icon-addition"></i>
+                                    调用缓存
                                 </button>
                             </div>
                         </div>
@@ -233,7 +243,7 @@
                                         <label class="layui-form-label">上一期蓝：</label>
                                         <div class="layui-inline layui-form">
                                             <input name="sq_number" id="sq_number" class="layui-input"
-                                                autocomplete="off" value="14">
+                                                autocomplete="off" value="16">
                                         </div>
                                     </div>
                                 </div>
@@ -242,7 +252,7 @@
                                         <label class="layui-form-label">上两期蓝：</label>
                                         <div class="layui-inline layui-form">
                                             <input name="sq_number1" id="sq_number1" class="layui-input"
-                                                autocomplete="off" value="6">
+                                                autocomplete="off" value="14">
                                         </div>
                                     </div>
                                 </div>
@@ -251,7 +261,7 @@
                                         <label class="layui-form-label">上三期蓝：</label>
                                         <div class="layui-inline layui-form">
                                             <input name="sq_number2" id="sq_number2" class="layui-input"
-                                                autocomplete="off" value="8">
+                                                autocomplete="off" value="6">
                                         </div>
                                     </div>
                                 </div>
@@ -260,11 +270,19 @@
                                         <label class="layui-form-label">上四期蓝：</label>
                                         <div class="layui-inline layui-form">
                                             <input name="sq_number3" id="sq_number3" class="layui-input"
-                                                autocomplete="off" value="3">
+                                                autocomplete="off" value="8">
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">上期期号：</label>
+                                        <div class="layui-inline layui-form">
+                                            <input name="qh" id="qh" class="layui-input" autocomplete="off"
+                                                value="22004">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="layui-col-md3">
@@ -723,46 +741,53 @@
             var field = res.field;
             //重叠码
             var selected_number = []; //关于计算后的尾号所有的号码陈列
+
+            var kjhm = field.kjhm.replace(/，/g, ',').substring(0, field.kjhm.lastIndexOf("+"));//红球
+            var kjhms = kjhm.split(",");
             var sq_number = parseInt(field.sq_number);//上1期
             var sq_number1 = parseInt(field.sq_number1);//上2期
             var sq_number2 = parseInt(field.sq_number2);//上3期
             var sq_number3 = parseInt(field.sq_number3);//上4期
+            var qh = parseInt(field.qh);//上期期号
             //a+b 绝杀法： 一位直接杀，两位取尾号杀，和为0杀10
             var hz = sq_number + sq_number1;
             console.log(hz);
             if (hz < 10) {
-                selected_number.push({ "杀上期+上2期(99%)": hz });
+                selected_number.push({ "杀上期+上2期(99%)": hz, 'hz': hz });
             } else if (hz % 10 == 0) {
-                selected_number.push({ "杀上期+上2期(99%)": 10 });
+                selected_number.push({ "杀上期+上2期(99%)": 10, 'hz': 10 });
             } else if (hz > 10) {
-                selected_number.push({ "杀上期+上2期(99%)": hz % 10 });
+                selected_number.push({ "杀上期+上2期(99%)": hz % 10, 'hz': hz % 10 });
             }
             //a+16 绝杀法： 一位直接杀，两位取尾号杀，和为0杀10
             var hz01 = sq_number + 16;
             if (hz01 < 10) {
-                selected_number.push({ "杀上期+16(95%)": hz01 });
+                selected_number.push({ "杀上期+16(95%)": hz01, 'hz': hz01 });
             } else if (hz01 % 10 == 0) {
-                selected_number.push({ "杀上期+16(95%)": 10 });
+                selected_number.push({ "杀上期+16(95%)": 10, 'hz': 10 });
             } else if (hz01 > 10) {
-                selected_number.push({ "杀上期+16(95%)": hz01 % 10 });
+                selected_number.push({ "杀上期+16(95%)": hz01 % 10, 'hz': hz01 % 10 });
             }
             //a+b+c 绝杀法： 一位直接杀，两位取尾号杀，和为0杀10
+            /**错误期号：
+             *22006期：篮球2 
+             */
             var hz02 = sq_number + sq_number1 + sq_number2;
             if (hz02 < 10) {
-                selected_number.push({ "杀上期+上2期+上3期(100%)": hz02 });
+                selected_number.push({ "杀上期+上2期+上3期(100%)": hz02, 'hz': hz02 });
             } else if (hz02 % 10 == 0) {
-                selected_number.push({ "杀上期+上2期+上3期(100%)": 10 });
+                selected_number.push({ "杀上期+上2期+上3期(100%)": 10, 'hz': 10 });
             } else if (hz02 > 10) {
-                selected_number.push({ "杀上期+上2期+上3期(100%)": hz02 % 10 });
+                selected_number.push({ "杀上期+上2期+上3期(100%)": hz02 % 10, 'hz': hz02 % 10 });
             }
             //a+b+c+d 绝杀法： 一位直接杀，两位取尾号杀，和为0杀10
-            var hz03 = sq_number + sq_number1 + sq_number2;
+            var hz03 = sq_number + sq_number1 + sq_number2 + sq_number3;
             if (hz03 < 10) {
-                selected_number.push({ "杀上期+上2期+上3期+上4期(98%)": hz03 });
+                selected_number.push({ "杀上期+上2期+上3期+上4期(98%)": hz03, 'hz': hz03 });
             } else if (hz03 % 10 == 0) {
-                selected_number.push({ "杀上期+上2期+上3期+上4期(98%)": 10 });
+                selected_number.push({ "杀上期+上2期+上3期+上4期(98%)": 10, 'hz': 10 });
             } else if (hz03 > 10) {
-                selected_number.push({ "杀上期+上2期+上3期+上4期(98%)": hz03 % 10 });
+                selected_number.push({ "杀上期+上2期+上3期+上4期(98%)": hz03 % 10, 'hz': hz03 % 10 });
             }
             //上期6红+蓝值的和值 绝杀法： 一位直接杀，两位取尾号杀，和为0杀10
             var kjhm = field.kjhm.replace(/，/g, ',').substring(0, field.kjhm.lastIndexOf("+"));
@@ -772,39 +797,167 @@
                 var element = kjhms[index];
                 hz04 += parseInt(element)
             }
-            hz04+=sq_number;//和值
+            hz04 += sq_number;//和值
             if (hz04 < 10) {
-                selected_number.push({ "杀上期6红+蓝值的和值(96%)": hz04 });
+                selected_number.push({ "杀上期6红+蓝值的和值(96%)": hz04, 'hz': hz04 });
             } else if (hz04 % 10 == 0) {
-                selected_number.push({ "杀上期6红+蓝值的和值(96%)": 10 });
+                selected_number.push({ "杀上期6红+蓝值的和值(96%)": 10, 'hz': 10 });
             } else if (hz04 > 10) {
-                selected_number.push({ "杀上期6红+蓝值的和值(96%)": hz04 % 10 });
+                selected_number.push({ "杀上期6红+蓝值的和值(96%)": hz04 % 10, 'hz': hz04 % 10 });
             }
-             //s+g 绝杀法： 一位直接杀，两位取尾号杀，和为0杀10
-             var hz03 = sq_number + sq_number1 + sq_number2;
-            if (hz03 < 10) {
-                selected_number.push({ "杀上期+上2期+上3期+上4期(98%)": hz03 });
-            } else if (hz03 % 10 == 0) {
-                selected_number.push({ "杀上期+上2期+上3期+上4期(98%)": 10 });
-            } else if (hz03 > 10) {
-                selected_number.push({ "杀上期+上2期+上3期+上4期(98%)": hz03 % 10 });
+            //s+g 绝杀法： 一位直接杀，两位取尾号杀，和为0杀10
+            var hz05 = 0;
+            if (sq_number < 10) {//小于10 加上16 和值的尾数0 则再加上16 然后用十位+个位
+                hz05 = sq_number + 16;
+                if (hz05 % 10 == 0) {
+                    hz05 += 16;
+                    hz05 = (hz05 % 10) + (Math.floor(hz05 / 10));
+                } else {
+                    hz05 = (hz05 % 10) + (Math.floor(hz05 / 10));
+                }
+            } else {
+                hz05 = (sq_number % 10) + (Math.floor(sq_number / 10));
             }
+            selected_number.push({ "杀取上期十位+上期个位(98%)": hz05, 'hz': hz05 });
+            //s-g 绝杀法： 用十位 - 个位
+            var hz06 = 0;//Math.abs(-2)
+            if (sq_number > 10) {//大于10
+                var sw = Math.floor(sq_number / 10);
+                var gw = sq_number % 10;
+                var jdz = Math.abs(sw - gw);
+                if (jdz == 0) {
+                    hz06 = 10;
+                } else {
+                    hz06 = jdz;
+                }
+            } else {//小于10  加上16 用十位 - 个位 的绝对值
+                hz06 = sq_number + 16;
+                if (hz06 % 10 == 0) {
+                    hz06 += 16;
+                    hz06 = (hz06 % 10) + (Math.floor(hz06 / 10));
+                } else {
+                    hz06 = (hz06 % 10) + (Math.floor(hz06 / 10));
+                }
+                hz06 = (sq_number % 10) + (Math.floor(sq_number / 10));
+            }
+            selected_number.push({ "杀取上期十位-上期个位(96%)": hz06, 'hz': hz06 });
+            //s*g 绝杀法： 用十位*个位 
+            var hz07 = 0;//Math.abs(-2)
+            if (sq_number > 10) {//大于10 加上16 用十位*个位 
+                var sw = Math.floor(sq_number / 10);
+                var gw = sq_number % 10;
+                hz07 = sw * gw;
+            } else if (sq_number == 10) {
+                var jia = sq_number + 16;
+                var sw = Math.floor(jia / 10);
+                var gw = jia % 10;
+                hz07 = sw * gw;
+            } else {//小于10
+                hz07 = sq_number * 16;
+                if (hz07 == 16) {
+                    hz07 = 16;
+                } else {
+                    hz07 = hz07 % 10;
+                }
+            }
+            selected_number.push({ "杀取上期十位*上期个位(95%)": hz07, 'hz': hz07 });
+            //s/g 绝杀法： 用十位/ 个位 余数
+            var hz08 = 0;//Math.abs(-2)
+            if (sq_number > 10) {//大于10 加上16 用十位/ 个位 余数
+                var sw = Math.floor(sq_number / 10);
+                var gw = sq_number % 10;
+                hz08 = sw % gw;
+            } else {//小于10
+                hz08 = sq_number + 16;
+                if (hz08 % 10 == 0) {//如果个位为0 再加16
+                    hz08 += 16;
+                }
+                var sw = Math.floor(hz08 / 10);
+                var gw = hz08 % 10;
+                if (gw / sw == 0) {//如果为0 就杀10
+                    hz08 = 10;
+                } else {
+                    hz08 = sw % gw;
+                }
+            }
+            selected_number.push({ "杀取上期个位/ 上期十位(96%)": hz08, 'hz': hz08 });
+            //a/g 绝杀法： 用上期篮球/ 上期篮球个位 
+            var hz09 = 0;//Math.abs(-2)
+            if (sq_number > 10) {//大于10 用上期篮球/ 上期篮球个位 取商 余数不要
+                var gw = sq_number % 10;
+                hz09 = Math.floor(sq_number / gw); //
+            } else {//小于10 加16
+                hz09 = sq_number + 16;
+                if (hz09 % 10 == 0) {//如果个位为0 再加16
+                    hz09 += 16;
+                }
+                var gw = hz09 % 10;
+                if (gw / sw == 0) {//如果为0 就杀10
+                    hz09 = 10;
+                } else {
+                    hz09 = Math.floor(hz09 / gw); //
+                }
+            }
+            selected_number.push({ "杀取上期/ 上期个位(97%)": hz09, 'hz': hz09 });
+            //相乘 绝杀法： 用17/ 上期篮球 
+            var hz10 = 0;//
+            hz10 = qh * 11;//期号*11
+            hz10 += kjhms[3] + 1;//加上第四个红球 再加一
+            hz10 = hz10 % 16;//计算出16的余数
+            selected_number.push({ "相乘绝杀法(100%)": hz10, 'hz': hz10 });
+            var shm = [];
+            for (var index = 0; index < selected_number.length; index++) {
+                var element = selected_number[index];
+                shm.push(element.hz);
+            }
+
             console.log(selected_number);
-            // selected_number = unique(selected_number)//去重
-            // mp(selected_number)//排序
-            // console.log(selected_number+"");
-            // var newData = { red: selected_number+"", blue: field.lan_number, lx: $('#lx option:selected').text() }
-            // var oldData = table.cache['tableDate'];//从缓存中拿数据
-            // // console.log(oldData);
-            // oldData.unshift(newData)
-            // table_data.reload({
-            //     // page:{curr:1},
-            //     url: '',
-            //     data: oldData
-            // })
+            shm = unique(shm)//去重
+            mp(shm)//排序
+            var json = JSON.stringify(selected_number);
+            var newData = { red: "", blue: json + shm, lx: $('#lx option:selected').text() }
+            var oldData = table.cache['tableDate'];//从缓存中拿数据
+            // console.log(oldData);
+            oldData.unshift(newData)
+            table_data.reload({
+                // page:{curr:1},
+                url: '',
+                data: oldData
+            })
 
         })
-
+        //存入缓存
+        form.on('submit(formData5)', function (res) {
+            console.log(res);
+            var sq_number = res.field.sq_number;
+            var sq_number1 = res.field.sq_number1;
+            var sq_number2 = res.field.sq_number2;
+            var sq_number3 = res.field.sq_number3;
+            var kjhm = res.field.kjhm;
+            var qh = res.field.qh;
+            window.localStorage.setItem("sq_number",sq_number);
+            window.localStorage.setItem("sq_number1",sq_number1);
+            window.localStorage.setItem("sq_number2",sq_number2);
+            window.localStorage.setItem("sq_number3",sq_number3);
+            window.localStorage.setItem("kjhm",kjhm);
+            window.localStorage.setItem("qh",qh);
+        });
+        //调用缓存
+        form.on('submit(formData6)', function (res) {
+            var sq_number = window.localStorage.getItem("sq_number");
+            var sq_number1 = window.localStorage.getItem("sq_number1");
+            var sq_number2 = window.localStorage.getItem("sq_number2");
+            var sq_number3 = window.localStorage.getItem("sq_number3");
+            var kjhm = window.localStorage.getItem("kjhm");
+            var qh = window.localStorage.getItem("qh");
+            $('#sq_number').val(sq_number);
+            $('#sq_number1').val(sq_number1);
+            $('#sq_number2').val(sq_number2);
+            $('#sq_number3').val(sq_number3);
+            $('#kjhm').val(kjhm);
+            $('#qh').val(qh);
+            console.log(sq_number);
+        });
     })
 
 
