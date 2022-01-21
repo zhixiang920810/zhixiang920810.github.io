@@ -2,6 +2,7 @@
 * [返回](/菜单/1面向对象编程有哪些特征.md)
 * java基础
   * [0.java面试题](/java基础/0java面试题.md)
+  * [1.java面试题](/java基础/1java面试题.md)
   * [1.JDK与JRE的区别是什么](/java基础/1JDK与JRE的区别是什么.md)
   * [2.如何编译和运行java文件](/java基础/2如何编译和运行java文件.md)
   * [3.java中关键字有哪些](/java基础/3java中关键字有哪些.md)
