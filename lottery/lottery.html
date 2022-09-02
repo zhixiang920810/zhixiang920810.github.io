@@ -300,7 +300,7 @@
                     <h2 class="layui-colla-title">数据展示</h2>
                     <div class="layui-colla-content layui-show">
                         <div class="layui-row mar-20">
-                            <div class="layui-col-md9 search1">
+                            <!-- <div class="layui-col-md9 search1">
                                 <div class="layui-col-md3">
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">事件标题</label>
@@ -365,7 +365,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- <div class="layui-col-md1">
                                 <div class="zksj">
                                     展开 <img src="../zdry/img/jiantou3.png">
@@ -405,6 +405,73 @@
                         </script>
                     </div>
                 </div>
+                <!-- 中奖号码自动比对 -->
+                  <div class="layui-colla-item">
+                    <h2 class="layui-colla-title">中奖号码自动比对</h2>
+                    <div class="layui-colla-content layui-show">
+
+                        <div class="layui-row mar-20">
+                            <div class="layui-col-md12 search1">
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">中奖号码：</label>
+                                        <div class="layui-inline layui-form">
+                                            <input name="bd_zj_number" id="bd_zj_number" class="layui-input"
+                                                autocomplete="off" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md12 search1">
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">本期期号：</label>
+                                        <div class="layui-inline layui-form">
+                                            <input name="bqqh" id="bqqh" class="layui-input"
+                                                autocomplete="off" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">选号：</label>
+                                        <div class="layui-inline layui-form">
+                                            <input name="bd_xh_number" id="bd_xh_number" class="layui-input"
+                                                autocomplete="off" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md3">
+                                    <button type="button" lay-submit lay-filter="formData_bdadd"
+                                        class="layui-btn layui-btn-normal">
+                                        <i class="layui-icon layui-icon-addition"></i>
+                                        添加
+                                    </button>
+    
+                                </div>
+                              
+                            </div>
+
+                            <div class="layui-col-md3">
+                                <button type="button" lay-submit lay-filter="formData_bddata"
+                                    class="layui-btn layui-btn-normal">
+                                    <i class="layui-icon layui-icon-addition"></i>
+                                    比对
+                                </button>
+                                 <button type="button" lay-submit lay-filter="formData_export_test"
+                                    class="layui-btn layui-btn-normal">
+                                    <i class="layui-icon layui-icon-addition"></i>
+                                    导出excel数据-测试
+                                </button>
+                            </div>
+                           
+                        </div>
+                        <div class="tabel_data">
+                            <table id="tableDate1" lay-filter="tableDate1"></table>
+                        </div>
+                    </div>
+                </div>
+                <!-- 中间号码自动比对end -->
             </div>
 
 
@@ -608,6 +675,117 @@
             }
 
         })
+
+        //比对中奖号码
+        var col_column1 = [];
+        col_column1.unshift({ type: 'numbers',align: 'center', title:'序号', width: '8%' })//插入
+        col_column1.unshift({ type: 'checkbox',align: 'center',  width: '5%' })//插入
+        col_column1.push({ field: 'lx', title: '期号', align: 'center', width: '15%', edit: 'text' })//插入
+        col_column1.push({ field: 'red', title: '红球', align: 'center', width: '25%', edit: 'text' })//插入   
+        col_column1.push({ field: 'blue', title: '篮球', align: 'center', width: '10%', edit: 'text' })//插入
+        col_column1.push({ field: 'result', title: '结果', align: 'center', width: '15%', edit: 'text' })//插入
+        col_column1.push({ field: 'title', title: '操作', toolbar: '#barDemo', align: 'center', width: '20%' })
+
+        // col_column1.
+        var table_data1 = table.render({
+            elem: '#tableDate1',
+            id: 'tableDate1',
+            method: 'get',
+            toolbar: '#toolbarDemo1',
+            url: 'layuiadmin/json/console/top-card.js',
+            // url:'',
+            // page: true,
+            // even: even,
+            limit: 1000,
+            cols: [
+                col_column1
+
+            ],
+            // done: function (res, curr, count) {
+            //     console.log(res);
+            //     var arr = res.data;
+            //     for (var index = 0; index < arr.length; index++) {
+            //         var element = arr[index];
+            //         console.log(element.SJCOUNT);
+            //         console.log(element.SJCOUNT != '0');
+            //         if (element.SJCOUNT != '0') {
+            //             if (sjxx_map.has(element.QBZTNRBH)) {
+            //                 if (sjxx_map.get(element.QBZTNRBH) == 1) {
+            //                     sjxx_map.set(element.QBZTNRBH, 0);
+            //                     $('#' + element.QBZTNRBH).attr("class", "button3  layui-btn-xs");
+            //                     $('#' + element.QBZTNRBH).attr("lay-event", "delete");
+            //                     $('#' + element.QBZTNRBH).text("取消物建");
+            //                 }
+            //             } else {
+            //                 sjxx_map.set(element.QBZTNRBH, 0);
+            //                 $('#' + element.QBZTNRBH).attr("class", "button3  layui-btn-xs");
+            //                 $('#' + element.QBZTNRBH).attr("lay-event", "delete");
+            //                 $('#' + element.QBZTNRBH).text("取消物建");
+            //             }
+            //         }
+            //     }
+            // }
+        });
+        table.on('tool(tableDate1)', function (obj) {
+            var data = obj.data;
+            console.log(obj);
+            if (obj.event == 'del') {
+
+            } else if (obj.event == 'delete') {
+                obj.del();
+                var list = table.cache['tableDate1'];//从缓存中拿数据
+                //去除空数组
+                for (var index = 0; index < list.length; index++) {
+                    var element = list[index];
+                    if (element.length == 0) {
+                        list.remove_arr(element)
+                    }
+                }
+                console.log(list);
+                //重新渲染列表信息
+                table_data1.reload({
+                    // page:{curr:1},
+                    url: '',
+                    data: list
+                })
+            }
+
+        });
+        table.on('toolbar(tableDate1)', function (obj) {
+            console.log(obj);
+            var checkStatus = table.checkStatus(obj.config.id);
+            console.log(checkStatus);
+            if (obj.event == 'checkStatus') {
+                var list = [];//先定义一个空数组，每次导出都会清空  -- 防止了第二次导出会出现多次列名
+                console.log(obj.config.data);
+                list.push(...obj.config.data);
+                list.unshift({ red: '红', blue: '蓝', lx: '类型' });
+                console.log(list);
+                var data = excel.filterExportData(list, [//列头顺序可以重新排列的函数
+                    'red',
+                    'blue',
+                    'lx',
+                ]);
+                excel.setExportCellStyle(data, 'A1:D1', {
+                    s: {
+                        // fill:{},
+                        alignment: {
+                            horizontal: 'center',
+                            vertical: 'center',
+                            wrapText: true,
+                        }
+
+                    }
+                })
+                // layer.close(index);
+                excel.exportExcel({
+                    sheet1: data
+                }, '随机号码.xlsx');
+            }
+
+        })
+
+
 
         //新增一行
         form.on('submit(formData1)', function (res) {
@@ -935,12 +1113,18 @@
             var sq_number3 = res.field.sq_number3;
             var kjhm = res.field.kjhm;
             var qh = res.field.qh;
+            var bd_zj_number = res.field.bd_zj_number;//中奖号码
+            var zx_data = JSON.stringify(table.cache['tableDate1']);//自选号码
+            var bqqh = res.field.bqqh;//本期期号
             window.localStorage.setItem("sq_number",sq_number);
             window.localStorage.setItem("sq_number1",sq_number1);
             window.localStorage.setItem("sq_number2",sq_number2);
             window.localStorage.setItem("sq_number3",sq_number3);
             window.localStorage.setItem("kjhm",kjhm);
             window.localStorage.setItem("qh",qh);
+            window.localStorage.setItem("bd_zj_number",bd_zj_number);
+            window.localStorage.setItem("zx_data",zx_data);
+            window.localStorage.setItem("bqqh",bqqh);
         });
         //调用缓存
         form.on('submit(formData6)', function (res) {
@@ -950,16 +1134,89 @@
             var sq_number3 = window.localStorage.getItem("sq_number3");
             var kjhm = window.localStorage.getItem("kjhm");
             var qh = window.localStorage.getItem("qh");
+            var bd_zj_number = window.localStorage.getItem("bd_zj_number");
+            var zx_data = window.localStorage.getItem("zx_data");
+            var bqqh = window.localStorage.getItem("bqqh");
             $('#sq_number').val(sq_number);
             $('#sq_number1').val(sq_number1);
             $('#sq_number2').val(sq_number2);
             $('#sq_number3').val(sq_number3);
             $('#kjhm').val(kjhm);
-            $('#qh').val(qh);
-            console.log(sq_number);
+            $('#bqqh').val(bqqh);
+            $('#bd_zj_number').val(bd_zj_number);
+            table_data1.reload({
+                // page:{curr:1},
+                url: '',
+                data: JSON.parse(zx_data)
+            })
+            $('#bqqh').val(bqqh);
+            console.log(JSON.parse(zx_data));
+        });
+          //添加号码到表格中放入缓存 bd_zj_number bd_xh_number
+          form.on('submit(formData_bdadd)', function (res) {
+            // bd_zjhmcount();
+            var bdhm_number = window.localStorage.getItem("sq_number");
+            var bd_xh_number = res.field.bd_xh_number;//选择号码
+            var bqqh = res.field.bqqh;//期号
+            var arr = bd_xh_number.split('+');
+            var newData = { red: arr[0] , blue: arr[1], lx: bqqh}
+            var oldData = table.cache['tableDate1'];//从缓存中拿数据
+            oldData.unshift(newData)
+            table_data1.reload({
+                // page:{curr:1},
+                url: '',
+                data: oldData
+            })
+        });
+        form.on('submit(formData_bddata)', function (res) {
+            bd_zjhmcount();
+            var bdhm_number = window.localStorage.getItem("sq_number");
+            var bd_xh_number = res.field.bd_xh_number;//选择号码
+            var bqqh = res.field.bqqh;//期号
+            var arr = bd_xh_number.split('+');
+            var newData = { red: arr[0] , blue: arr[1], lx: bqqh}
+            var oldData = table.cache['tableDate1'];//从缓存中拿数据
+            oldData.unshift(newData)
+            table_data1.reload({
+                // page:{curr:1},
+                url: '',
+                data: oldData
+            })
+        });
+//测试
+        form.on('submit(formData_export_test)', function (res) {
+            var lists = '[     {         "fwqd": "北京",         "sanzm": "NAY",         "sizm": "ZBNY",         "zwmc": "北京南苑机场",         "ywmc": "NANYUAN"     },     {         "fwqd": "北京",         "sanzm": "PEK",         "sizm": "ZBAA",         "zwmc": "北京首都国际机场",         "ywmc": "BEIJING"     },     {         "fwqd": "天津",         "sanzm": "TSN",         "sizm": "ZBTJ",         "zwmc": "天津滨海国际机场",         "ywmc": "TIANJIN"     },     {         "fwqd": "张家口",         "sanzm": "ZQZ",         "sizm": "ZBZJ",         "zwmc": "张家口宁远机场",         "ywmc": "ZHANGJIAKOU"     },     {         "fwqd": "邯郸",         "sanzm": "HDG",         "sizm": "ZBHD",         "zwmc": "邯郸机场",         "ywmc": "HANDAN"     },     {         "fwqd": "秦皇岛",         "sanzm": "SHP",         "sizm": "ZBSH",         "zwmc": "秦皇岛山海关机场",         "ywmc": "QINHUANGDAO"     },     {         "fwqd": "唐山",         "sanzm": "TVS",         "sizm": "ZBTS",         "zwmc": "唐山三女河机场",         "ywmc": "TANGSHAN"     },     {         "fwqd": "邢台",         "sanzm": "XNT",         "sizm": "ZBXT",         "zwmc": "邢台褡裢机场",         "ywmc": "SHAHE"     },     {         "fwqd": "石家庄",         "sanzm": "SJW",         "sizm": "ZBSJ",         "zwmc": "石家庄正定国际机场",         "ywmc": "SHIJIAZHUANG"     },     {         "fwqd": "太原",         "sanzm": "TYN",         "sizm": "ZBYN",         "zwmc": "太原武宿国际机场",         "ywmc": "TAIYUAN"     },     {         "fwqd": "吕梁",         "sanzm": "LLV",         "sizm": "ZBLL",         "zwmc": "吕梁机场",         "ywmc": "LVLIANG"     },     {         "fwqd": "长治",         "sanzm": "CIH",         "sizm": "ZBCZ",         "zwmc": "长治王村机场",         "ywmc": "CHANGZHI"     },     {         "fwqd": "大同",         "sanzm": "DAT",         "sizm": "ZBDT",         "zwmc": "大同云冈机场",         "ywmc": "DATONG"     },     {         "fwqd": "运城",         "sanzm": "YCU",         "sizm": "ZBYC",         "zwmc": "运城机场",         "ywmc": "YUNCHENG"     },     {         "fwqd": "阿拉善左旗",         "sanzm": "AXF",         "sizm": "",         "zwmc": "阿拉善左旗巴彦浩特机场",         "ywmc": "BAYANHAOTE"     },     {         "fwqd": "阿拉善右旗",         "sanzm": "RHT",         "sizm": "",         "zwmc": "阿拉善右旗巴丹吉林机场",         "ywmc": "BADANJILIN"     },     {         "fwqd": "包头",         "sanzm": "BAV",         "sizm": "ZBOW",         "zwmc": "包头二里半机场",         "ywmc": "BAOTOU"     },     {         "fwqd": "赤峰",         "sanzm": "CIF",         "sizm": "ZBCF",         "zwmc": "赤峰玉龙机场",         "ywmc": "CHIFENG"     },     {         "fwqd": "鄂尔多斯",         "sanzm": "DSN",         "sizm": "ZBDS",         "zwmc": "鄂尔多斯伊金霍洛机场",         "ywmc": "ORDOS"     },     {         "fwqd": "额济纳旗",         "sanzm": "EJN",         "sizm": "",         "zwmc": "额济纳旗桃来机场",         "ywmc": "ERJINA"     },     {         "fwqd": "二连浩特",         "sanzm": "ERL",         "sizm": "ZBER",         "zwmc": "二连浩特赛乌苏机场",         "ywmc": "ERLIANHOT"     },     {         "fwqd": "满洲里",         "sanzm": "NZH",         "sizm": "ZBMZ",         "zwmc": "满洲里西郊机场",         "ywmc": "MANZHOULI"     },     {         "fwqd": "乌海",         "sanzm": "WUA",         "sizm": "ZBUH",         "zwmc": "乌海机场",         "ywmc": "WUHAI"     },     {         "fwqd": "阿尔山",         "sanzm": "YIE",         "sizm": "ZBES",         "zwmc": "阿尔山伊尔施机场",         "ywmc": "ARXAN"     },     {         "fwqd": "巴彦淖尔",         "sanzm": "RLK",         "sizm": "ZBYZ",         "zwmc": "巴彦淖尔天吉泰机场",         "ywmc": "BAYANNUR"     },     {         "fwqd": "呼和浩特",         "sanzm": "HET",         "sizm": "ZBHH",         "zwmc": "呼和浩特白塔国际机场",         "ywmc": "HOHHOT"     },     {         "fwqd": "呼伦贝尔",         "sanzm": "HLD",         "sizm": "ZBLA",         "zwmc": "呼伦贝尔海拉尔机场",         "ywmc": "HAILAR"     },     {         "fwqd": "通辽",         "sanzm": "TGO",         "sizm": "ZBTL",         "zwmc": "通辽机场",         "ywmc": "TONGLIAO"     },     {         "fwqd": "乌兰浩特",         "sanzm": "HLH",         "sizm": "ZBUL",         "zwmc": "乌兰浩特机场",         "ywmc": "ULANHOT"     },     {         "fwqd": "锡林浩特",         "sanzm": "XIL",         "sizm": "ZBXH",         "zwmc": "锡林浩特机场",         "ywmc": "XILINHOT"     },     {         "fwqd": "鞍山",         "sanzm": "AOG",         "sizm": "ZYAS",         "zwmc": "鞍山腾鳌机场",         "ywmc": "ANSHAN"     },     {         "fwqd": "长海",         "sanzm": "CNI",         "sizm": "ZYCH",         "zwmc": "长海大长山岛机场",         "ywmc": "CHANGHAI"     },     {         "fwqd": "朝阳",         "sanzm": "CHG",         "sizm": "ZYCY",         "zwmc": "朝阳机场",         "ywmc": "CHAOYANG"     },     {         "fwqd": "大连",         "sanzm": "DLC",         "sizm": "ZYTL",         "zwmc": "大连周水子国际机场",         "ywmc": "DALIAN"     },     {         "fwqd": "丹东",         "sanzm": "DDG",         "sizm": "ZYDD",         "zwmc": "丹东浪头机场",         "ywmc": "DANDONG"     },     {         "fwqd": "锦州",         "sanzm": "JNZ",         "sizm": "ZYJZ",         "zwmc": "锦州小岭子机场",         "ywmc": "JINZHOU"     },     {         "fwqd": "沈阳",         "sanzm": "SHE",         "sizm": "ZYTX",         "zwmc": "沈阳桃仙国际机场",         "ywmc": "SHENYANG"     },     {         "fwqd": "通化",         "sanzm": "TNH",         "sizm": "ZYTN",         "zwmc": "通化三源浦机场",         "ywmc": "TONGHUA"     },     {         "fwqd": "白山",         "sanzm": "NBS",         "sizm": "ZYBS",         "zwmc": "长白山机场",         "ywmc": "CHANGBAISHAN"     },     {         "fwqd": "延边",         "sanzm": "YNJ",         "sizm": "ZYYJ",         "zwmc": "延吉朝阳川机场",         "ywmc": "YANJI"     },     {         "fwqd": "长春",         "sanzm": "CGQ",         "sizm": "ZYCC",         "zwmc": "长春龙嘉国际机场",         "ywmc": "CHANGCHUN"     },     {         "fwqd": "鸡西",         "sanzm": "JXA",         "sizm": "ZYJX",         "zwmc": "鸡西兴凯湖机场",         "ywmc": "JIXI"     },     {         "fwqd": "佳木斯",         "sanzm": "JMU",         "sizm": "ZYJM",         "zwmc": "佳木斯东郊机场",         "ywmc": "JIAMUSI"     },     {         "fwqd": "牡丹江",         "sanzm": "MDG",         "sizm": "ZYMD",         "zwmc": "牡丹江海浪机场",         "ywmc": "MUDANJIANG"     },     {         "fwqd": "伊春",         "sanzm": "LDS",         "sizm": "ZYLD",         "zwmc": "伊春林都机场",         "ywmc": "YICHUN"     },     {         "fwqd": "黑河",         "sanzm": "HEK",         "sizm": "ZYHE",         "zwmc": "黑河机场",         "ywmc": "HEIHE"     },     {         "fwqd": "大庆",         "sanzm": "DQA",         "sizm": "ZYDQ",         "zwmc": "大庆萨尔图机场",         "ywmc": "DAQING"     },     {         "fwqd": "大兴安岭",         "sanzm": "JGD",         "sizm": "ZYJD",         "zwmc": "加格达奇机场",         "ywmc": "JIAGEDAQI"     },     {         "fwqd": "哈尔滨",         "sanzm": "HRB",         "sizm": "ZYHB",         "zwmc": "哈尔滨太平国际机场",         "ywmc": "HARBIN"     },     {         "fwqd": "漠河",         "sanzm": "OHE",         "sizm": "ZYMH",         "zwmc": "漠河古莲机场",         "ywmc": "MOHE"     },     {         "fwqd": "齐齐哈尔",         "sanzm": "NDG",         "sizm": "ZYQQ",         "zwmc": "齐齐哈尔三家子机场",         "ywmc": "QIQIHAER"     },     {         "fwqd": "上海",         "sanzm": "SHA",         "sizm": "ZSSS",         "zwmc": "上海虹桥国际机场",         "ywmc": "HONGQIAO"     },     {         "fwqd": "上海",         "sanzm": "PVG",         "sizm": "ZSPD",         "zwmc": "上海浦东国际机场",         "ywmc": "PUDONG"     },     {         "fwqd": "淮安",         "sanzm": "HIA",         "sizm": "ZSSH",         "zwmc": "淮安涟水机场",         "ywmc": "HUAIAN"     },     {         "fwqd": "南通",         "sanzm": "NTG",         "sizm": "ZSNT",         "zwmc": "南通兴东机场",         "ywmc": "NANTONG"     },     {         "fwqd": "盐城",         "sanzm": "YNZ",         "sizm": "ZSYN",         "zwmc": "盐城南洋机场",         "ywmc": "YANCHENG"     },     {         "fwqd": "扬州",         "sanzm": "YTY",         "sizm": "ZSYA",         "zwmc": "扬州泰州机场",         "ywmc": "YANGZHOU"     },     {         "fwqd": "南京",         "sanzm": "NKG",         "sizm": "ZSNJ",         "zwmc": "南京禄口国际机场",         "ywmc": "NANJING"     },     {         "fwqd": "徐州",         "sanzm": "XUZ",         "sizm": "ZSXZ",         "zwmc": "徐州观音机场",         "ywmc": "XUZHOU"     },     {         "fwqd": "连云港",         "sanzm": "LYG",         "sizm": "ZSLG",         "zwmc": "连云港白塔埠机场",         "ywmc": "LIANYUNGANG"     },     {         "fwqd": "常州",         "sanzm": "CZX",         "sizm": "ZSCG",         "zwmc": "常州奔牛机场",         "ywmc": "CHANGZHOU"     },     {         "fwqd": "无锡",         "sanzm": "WUX",         "sizm": "ZSWX",         "zwmc": "苏南硕放国际机场",         "ywmc": "WUXI"     },     {         "fwqd": "温州",         "sanzm": "WNZ",         "sizm": "ZSWZ",         "zwmc": "温州龙湾国际机场",         "ywmc": "WENZHOU"     },     {         "fwqd": "衢州",         "sanzm": "JUZ",         "sizm": "ZSJU",         "zwmc": "衢州机场",         "ywmc": "QUZHOU"     },     {         "fwqd": "台州",         "sanzm": "HYN",         "sizm": "ZSLQ",         "zwmc": "台州路桥机场",         "ywmc": "TAIZHOU"     },     {         "fwqd": "舟山",         "sanzm": "HSN",         "sizm": "ZSZS",         "zwmc": "舟山普陀山机场",         "ywmc": "ZHOUSHAN"     },     {         "fwqd": "杭州",         "sanzm": "HGH",         "sizm": "ZSHC",         "zwmc": "杭州萧山国际机场",         "ywmc": "HANGZHOU"     },     {         "fwqd": "金华",         "sanzm": "YIW",         "sizm": "ZSYW",         "zwmc": "义乌机场",         "ywmc": "YIWU"     },     {         "fwqd": "宁波",         "sanzm": "NGB",         "sizm": "ZSNB",         "zwmc": "宁波栎社国际机场",         "ywmc": "NINGBO"     },     {         "fwqd": "安庆",         "sanzm": "AQG",         "sizm": "ZSAQ",         "zwmc": "安庆天柱山机场",         "ywmc": "ANQING"     },     {         "fwqd": "池州",         "sanzm": "JUH",         "sizm": "ZSJH",         "zwmc": "池州九华山机场",         "ywmc": "CHIZHOU"     },     {         "fwqd": "黄山",         "sanzm": "TXN",         "sizm": "ZSTX",         "zwmc": "黄山屯溪机场",         "ywmc": "HUANGSHAN"     },     {         "fwqd": "合肥",         "sanzm": "HFE",         "sizm": "ZSOF",         "zwmc": "合肥新桥国际机场",         "ywmc": "HEFEI"     },     {         "fwqd": "阜阳",         "sanzm": "FUG",         "sizm": "ZSFY",         "zwmc": "阜阳西关机场",         "ywmc": "FUYANG"     },     {         "fwqd": "福州",         "sanzm": "FOC",         "sizm": "ZSFZ",         "zwmc": "福州长乐国际机场",         "ywmc": "FUZHOU"     },     {         "fwqd": "沙县",         "sanzm": "SQJ",         "sizm": "",         "zwmc": "三明沙县机场",         "ywmc": "SANMING"     },     {         "fwqd": "龙岩",         "sanzm": "LCX",         "sizm": "ZSLD",         "zwmc": "连城冠豸山机场",         "ywmc": "LONGYAN"     },     {         "fwqd": "泉州",         "sanzm": "JJN",         "sizm": "ZSQZ",         "zwmc": "泉州晋江机场",         "ywmc": "QUANZHOU"     },     {         "fwqd": "南平",         "sanzm": "WUS",         "sizm": "ZSWY",         "zwmc": "武夷山机场",         "ywmc": "WUYISHAN"     },     {         "fwqd": "厦门",         "sanzm": "XMN",         "sizm": "ZSAM",         "zwmc": "厦门高崎国际机场",         "ywmc": "XIAMEN"     },     {         "fwqd": "赣州",         "sanzm": "KOW",         "sizm": "ZSGZ",         "zwmc": "赣州黄金机场",         "ywmc": "GANZHOU"     },     {         "fwqd": "吉安",         "sanzm": "JGS",         "sizm": "ZSGS",         "zwmc": "井冈山机场",         "ywmc": "JINGGANGSHAN"     },     {         "fwqd": "宜春",         "sanzm": "YIC",         "sizm": "ZSYC",         "zwmc": "宜春明月山机场",         "ywmc": "YICHUN"     },     {         "fwqd": "南昌",         "sanzm": "KHN",         "sizm": "ZSCN",         "zwmc": "南昌昌北国际机场",         "ywmc": "NANCHANG"     },     {         "fwqd": "景德镇",         "sanzm": "JDZ",         "sizm": "ZSJD",         "zwmc": "景德镇罗家机场",         "ywmc": "JINGDEZHEN"     },     {         "fwqd": "九江",         "sanzm": "JIU",         "sizm": "ZSJJ",         "zwmc": "九江庐山机场",         "ywmc": "JIUJIANG"     },     {         "fwqd": "济宁",         "sanzm": "JNG",         "sizm": "ZSJG",         "zwmc": "济宁曲阜机场",         "ywmc": "JINING"     },     {         "fwqd": "潍坊",         "sanzm": "WEF",         "sizm": "ZSWF",         "zwmc": "潍坊机场",         "ywmc": "WEIFANG"     },     {         "fwqd": "青岛",         "sanzm": "TAO",         "sizm": "ZSQD",         "zwmc": "青岛流亭国际机场",         "ywmc": "QINGDAO"     },     {         "fwqd": "济南",         "sanzm": "TNA",         "sizm": "ZSJN",         "zwmc": "济南遥墙国际机场",         "ywmc": "JINAN"     },     {         "fwqd": "临沂",         "sanzm": "LYI",         "sizm": "ZSLY",         "zwmc": "临沂沭埠岭机场",         "ywmc": "LINYI"     },     {         "fwqd": "烟台",         "sanzm": "YNT",         "sizm": "ZSYT",         "zwmc": "烟台莱山国际机场",         "ywmc": "YANTAI"     },     {         "fwqd": "东营",         "sanzm": "DOY",         "sizm": "ZSDY",         "zwmc": "东营胜利机场",         "ywmc": "DONGYING"     },     {         "fwqd": "威海",         "sanzm": "WEH",         "sizm": "ZSWH",         "zwmc": "威海国际机场",         "ywmc": "WEIHAI"     },     {         "fwqd": "洛阳",         "sanzm": "LYA",         "sizm": "ZHLY",         "zwmc": "洛阳北郊机场",         "ywmc": "LUOYANG"     },     {         "fwqd": "郑州",         "sanzm": "CGO",         "sizm": "ZHCC",         "zwmc": "郑州新郑国际机场",         "ywmc": "ZHENGZHOU"     },     {         "fwqd": "南阳",         "sanzm": "NNY",         "sizm": "ZHNY",         "zwmc": "南阳姜营机场",         "ywmc": "NANYANG"     },     {         "fwqd": "武汉",         "sanzm": "WUH",         "sizm": "ZHHH",         "zwmc": "武汉天河国际机场",         "ywmc": "WUHAN"     },     {         "fwqd": "宜昌",         "sanzm": "YIH",         "sizm": "ZHYC",         "zwmc": "宜昌三峡机场",         "ywmc": "YICHANG"     },     {         "fwqd": "恩施",         "sanzm": "ENH",         "sizm": "ZHES",         "zwmc": "恩施许家坪机场",         "ywmc": "ENSHI"     },     {         "fwqd": "襄阳",         "sanzm": "XFN",         "sizm": "ZHXF",         "zwmc": "襄阳刘集机场",         "ywmc": "XIANGYANG"     },     {         "fwqd": "常德",         "sanzm": "CGD",         "sizm": "ZGCD",         "zwmc": "常德桃花源机场",         "ywmc": "CHANGDE"     },     {         "fwqd": "怀化",         "sanzm": "HJJ",         "sizm": "ZGCJ",         "zwmc": "怀化芷江机场",         "ywmc": "HUAIHUA"     },     {         "fwqd": "张家界",         "sanzm": "DYG",         "sizm": "ZGDY",         "zwmc": "张家界荷花国际机场",         "ywmc": "ZHANGJIAJIE"     },     {         "fwqd": "长沙",         "sanzm": "CSX",         "sizm": "ZGHA",         "zwmc": "长沙黄花国际机场",         "ywmc": "CHANGSHA"     },     {         "fwqd": "永州",         "sanzm": "LLF",         "sizm": "ZGLG",         "zwmc": "永州零陵机场",         "ywmc": "YONGZHOU"     },     {         "fwqd": "东莞",         "sanzm": "DGM",         "sizm": "",         "zwmc": "东莞机场",         "ywmc": "DONGGUAN"     },     {         "fwqd": "深圳",         "sanzm": "SZX",         "sizm": "ZGSZ",         "zwmc": "深圳宝安国际机场",         "ywmc": "SHENZHEN"     },     {         "fwqd": "惠州",         "sanzm": "HUZ",         "sizm": "ZGHZ",         "zwmc": "惠州机场",         "ywmc": "HUIZHOU"     },     {         "fwqd": "梅州",         "sanzm": "MXZ",         "sizm": "ZGMX",         "zwmc": "梅县长岗岌机场",         "ywmc": "MEIXIAN"     },     {         "fwqd": "揭阳",         "sanzm": "SWA",         "sizm": "ZGOW",         "zwmc": "揭阳潮汕机场",         "ywmc": "JIEYANG"     },     {         "fwqd": "湛江",         "sanzm": "ZHA",         "sizm": "ZGZJ",         "zwmc": "湛江机场",         "ywmc": "ZHANJIANG"     },     {         "fwqd": "佛山",         "sanzm": "FUO",         "sizm": "ZGFS",         "zwmc": "佛山机场",         "ywmc": "FOSHAN"     },     {         "fwqd": "韶关",         "sanzm": "HSC",         "sizm": "",         "zwmc": "韶关桂头机场",         "ywmc": "SHAOGUAN"     },     {         "fwqd": "珠海",         "sanzm": "ZUH",         "sizm": "ZGSD",         "zwmc": "珠海金湾机场",         "ywmc": "ZHUHAI"     },     {         "fwqd": "广州",         "sanzm": "CAN",         "sizm": "ZGGG",         "zwmc": "广州白云国际机场",         "ywmc": "GUANGZHOU"     },     {         "fwqd": "柳州",         "sanzm": "LZH",         "sizm": "ZGZH",         "zwmc": "柳州白莲机场",         "ywmc": "LIUZHOU"     },     {         "fwqd": "百色",         "sanzm": "AEB",         "sizm": "ZGBS",         "zwmc": "百色巴马机场",         "ywmc": "BAISE"     },     {         "fwqd": "北海",         "sanzm": "BHY",         "sizm": "ZGBH",         "zwmc": "北海福成机场",         "ywmc": "BEIHAI"     },     {         "fwqd": "南宁",         "sanzm": "NNG",         "sizm": "ZGNN",         "zwmc": "南宁吴圩国际机场",         "ywmc": "NANNING"     },     {         "fwqd": "梧州",         "sanzm": "WUZ",         "sizm": "ZGWZ",         "zwmc": "梧州长洲岛机场",         "ywmc": "WUZHOU"     },     {         "fwqd": "桂林",         "sanzm": "KWL",         "sizm": "ZGKL",         "zwmc": "桂林两江国际机场",         "ywmc": "GUILIN"     },     {         "fwqd": "海口",         "sanzm": "HAK",         "sizm": "ZJHK",         "zwmc": "海口美兰国际机场",         "ywmc": "HAIKOU"     },     {         "fwqd": "三亚",         "sanzm": "SYX",         "sizm": "ZJSY",         "zwmc": "三亚凤凰国际机场",         "ywmc": "SANYA"     },     {         "fwqd": "重庆",         "sanzm": "CKG",         "sizm": "ZUCK",         "zwmc": "重庆江北国际机场",         "ywmc": "CHONGQING"     },     {         "fwqd": "万州",         "sanzm": "WXN",         "sizm": "ZUWX",         "zwmc": "万州五桥机场",         "ywmc": "WANZHOU"     },     {         "fwqd": "黔江",         "sanzm": "JIQ",         "sizm": "ZUQJ",         "zwmc": "黔江武陵山机场",         "ywmc": "ZHOUBAI"     },     {         "fwqd": "达州",         "sanzm": "DAX",         "sizm": "ZUDX",         "zwmc": "达州河市机场",         "ywmc": "DAZHOU"     },     {         "fwqd": "稻城",         "sanzm": "DCY",         "sizm": "ZUDC",         "zwmc": "稻城亚丁机场",         "ywmc": "DAOCHENG"     },     {         "fwqd": "九寨沟",         "sanzm": "JZH",         "sizm": "ZUJZ",         "zwmc": "九寨黄龙机场",         "ywmc": "JIUZHAIGOU"     },     {         "fwqd": "南充",         "sanzm": "NAO",         "sizm": "ZUNC",         "zwmc": "南充高坪机场",         "ywmc": "NANCHONG"     },     {         "fwqd": "攀枝花",         "sanzm": "PZI",         "sizm": "ZUZI",         "zwmc": "攀枝花保安营机场",         "ywmc": "PANZHIHUA"     },     {         "fwqd": "成都",         "sanzm": "CTU",         "sizm": "ZUUU",         "zwmc": "成都双流国际机场",         "ywmc": "CHENGDU"     },     {         "fwqd": "遂宁",         "sanzm": "SUN",         "sizm": "ZNSU",         "zwmc": "遂宁机场",         "ywmc": "SUINING"     },     {         "fwqd": "广元",         "sanzm": "GYS",         "sizm": "ZUGU",         "zwmc": "广元盘龙机场",         "ywmc": "GUANGYUAN"     },     {         "fwqd": "康定",         "sanzm": "KGT",         "sizm": "ZUKD",         "zwmc": "甘孜康定机场",         "ywmc": "KANGDING"     },     {         "fwqd": "绵阳",         "sanzm": "MIG",         "sizm": "ZUMY",         "zwmc": "绵阳南郊机场",         "ywmc": "MIANYANG"     },     {         "fwqd": "泸州",         "sanzm": "LZO",         "sizm": "ZULZ",         "zwmc": "泸州蓝田机场",         "ywmc": "LUZHOU"     },     {         "fwqd": "西昌",         "sanzm": "XIC",         "sizm": "ZUXC",         "zwmc": "西昌青山机场",         "ywmc": "XICHANG"     },     {         "fwqd": "宜宾",         "sanzm": "YBP",         "sizm": "ZUYB",         "zwmc": "宜宾菜坝机场",         "ywmc": "YIBIN"     },     {         "fwqd": "安顺",         "sanzm": "AVA",         "sizm": "ZUAS",         "zwmc": "安顺黄果树机场",         "ywmc": "ANSHUN"     },     {         "fwqd": "毕节",         "sanzm": "BFJ",         "sizm": "ZUBJ",         "zwmc": "毕节飞雄机场",         "ywmc": "BIJIE"     },     {         "fwqd": "贵阳",         "sanzm": "KWE",         "sizm": "ZUGY",         "zwmc": "贵阳龙洞堡国际机场",         "ywmc": "GUIYANG"     },     {         "fwqd": "黔西南",         "sanzm": "ACX",         "sizm": "ZUYI",         "zwmc": "兴义机场",         "ywmc": "XINGYI"     },     {         "fwqd": "黎平",         "sanzm": "HZH",         "sizm": "ZUNP",         "zwmc": "黎平机场",         "ywmc": "LIPING"     },     {         "fwqd": "黔东南",         "sanzm": "KJH",         "sizm": "ZUKJ",         "zwmc": "凯里黄平机场",         "ywmc": "KAILI"     },     {         "fwqd": "黔南",         "sanzm": "LLB",         "sizm": "ZULB",         "zwmc": "荔波机场",         "ywmc": "LIBO"     },     {         "fwqd": "铜仁",         "sanzm": "TEN",         "sizm": "ZUTR",         "zwmc": "铜仁凤凰机场",         "ywmc": "TONGREN"     },     {         "fwqd": "遵义",         "sanzm": "ZYI",         "sizm": "ZUZY",         "zwmc": "遵义新舟机场",         "ywmc": "ZUNYI"     },     {         "fwqd": "普洱",         "sanzm": "SYM",         "sizm": "ZPSM",         "zwmc": "普洱思茅机场",         "ywmc": "PUER"     },     {         "fwqd": "腾冲",         "sanzm": "TCZ",         "sizm": "ZUTC",         "zwmc": "腾冲驼峰机场",         "ywmc": "TENGCHONG"     },     {         "fwqd": "临沧",         "sanzm": "LNJ",         "sizm": "ZPLC",         "zwmc": "临沧机场",         "ywmc": "LINCANG"     },     {         "fwqd": "西双版纳",         "sanzm": "JHG",         "sizm": "ZPJH",         "zwmc": "西双版纳嘎洒国际机场",         "ywmc": "JINGHONG"     },     {         "fwqd": "丽江",         "sanzm": "LJG",         "sizm": "ZPLJ",         "zwmc": "丽江三义机场",         "ywmc": "LIJIANG"     },     {         "fwqd": "昭通",         "sanzm": "ZAT",         "sizm": "ZPZT",         "zwmc": "昭通机场",         "ywmc": "ZHAOTONG"     },     {         "fwqd": "隆阳",         "sanzm": "BSD",         "sizm": "ZPBS",         "zwmc": "保山云瑞机场",         "ywmc": "BAOSHAN"     },     {         "fwqd": "大理",         "sanzm": "DLU",         "sizm": "ZPDL",         "zwmc": "大理机场",         "ywmc": "DALIXIAGUAN"     },     {         "fwqd": "德宏",         "sanzm": "LUM",         "sizm": "ZPMS",         "zwmc": "德宏芒市机场",         "ywmc": "MANGSHI"     },     {         "fwqd": "迪庆",         "sanzm": "DIG",         "sizm": "ZPDQ",         "zwmc": "迪庆香格里拉机场",         "ywmc": "DIQING"     },     {         "fwqd": "昆明",         "sanzm": "KMG",         "sizm": "ZPPP",         "zwmc": "昆明长水国际机场",         "ywmc": "KUNMING"     },     {         "fwqd": "文山",         "sanzm": "WNH",         "sizm": "ZPWS",         "zwmc": "文山普者黑机场",         "ywmc": "WENSHAN"     },     {         "fwqd": "阿里",         "sanzm": "NGQ",         "sizm": "ZUAL",         "zwmc": "阿里昆莎机场",         "ywmc": "SHIQUANHE"     },     {         "fwqd": "昌都",         "sanzm": "BPX",         "sizm": "ZUBD",         "zwmc": "昌都邦达机场",         "ywmc": "CHAMDO"     },     {         "fwqd": "日喀则",         "sanzm": "RKZ",         "sizm": "ZURK",         "zwmc": "日喀则和平机场",         "ywmc": "RIKAZE"     },     {         "fwqd": "拉萨",         "sanzm": "LXA",         "sizm": "ZULS",         "zwmc": "拉萨贡嘎机场",         "ywmc": "LHASA"     },     {         "fwqd": "林芝",         "sanzm": "LZY",         "sizm": "ZUNZ",         "zwmc": "林芝米林机场",         "ywmc": "NYINGCHI"     },     {         "fwqd": "西安",         "sanzm": "XIY",         "sizm": "ZLXY",         "zwmc": "西安咸阳国际机场",         "ywmc": "XIAN"     },     {         "fwqd": "榆林",         "sanzm": "UYN",         "sizm": "ZLYL",         "zwmc": "榆林榆阳机场",         "ywmc": "YULIN"     },     {         "fwqd": "汉中",         "sanzm": "HZG",         "sizm": "ZLHZ",         "zwmc": "汉中西关机场",         "ywmc": "HANZHONG"     },     {         "fwqd": "安康",         "sanzm": "AKA",         "sizm": "ZLAK",         "zwmc": "安康五里铺机场",         "ywmc": "ANKANG"     },     {         "fwqd": "延安",         "sanzm": "ENY",         "sizm": "ZLYA",         "zwmc": "延安二十里堡机场",         "ywmc": "YANAN"     },     {         "fwqd": "甘南",         "sanzm": "GXH",         "sizm": "ZLXH",         "zwmc": "甘南夏河机场",         "ywmc": "XIAHE"     },     {         "fwqd": "金昌",         "sanzm": "JIC",         "sizm": "ZLJC",         "zwmc": "金昌金川机场",         "ywmc": "JINCHANG"     },     {         "fwqd": "张掖",         "sanzm": "YZY",         "sizm": "ZLZY",         "zwmc": "张掖甘州机场",         "ywmc": "ZHANGYE"     },     {         "fwqd": "敦煌",         "sanzm": "DNH",         "sizm": "ZLDH",         "zwmc": "敦煌机场",         "ywmc": "DUNHUANG"     },     {         "fwqd": "嘉峪关",         "sanzm": "JGN",         "sizm": "ZLJQ",         "zwmc": "嘉峪关机场",         "ywmc": "JIAYUGUAN"     },     {         "fwqd": "兰州",         "sanzm": "LHW",         "sizm": "ZLLL",         "zwmc": "兰州中川机场",         "ywmc": "LANZHOU"     },     {         "fwqd": "庆阳",         "sanzm": "IQN",         "sizm": "ZLQY",         "zwmc": "庆阳机场",         "ywmc": "QINGYANG"     },     {         "fwqd": "天水",         "sanzm": "THQ",         "sizm": "ZLTS",         "zwmc": "天水麦积山机场",         "ywmc": "TIANSHUI"     },     {         "fwqd": "西宁",         "sanzm": "XNN",         "sizm": "ZLXN",         "zwmc": "西宁曹家堡机场",         "ywmc": "XINING"     },     {         "fwqd": "格尔木",         "sanzm": "GOQ",         "sizm": "ZLGM",         "zwmc": "格尔木机场",         "ywmc": "GOLMUD"     },     {         "fwqd": "玉树",         "sanzm": "YUS",         "sizm": "ZLYS",         "zwmc": "玉树巴塘机场",         "ywmc": "YUSHU"     },     {         "fwqd": "固原",         "sanzm": "GYU",         "sizm": "ZLGY",         "zwmc": "固原六盘山机场",         "ywmc": "GUYUAN"     },     {         "fwqd": "银川",         "sanzm": "INC",         "sizm": "ZLIC",         "zwmc": "银川河东国际机场",         "ywmc": "YINCHUAN"     },     {         "fwqd": "中卫",         "sanzm": "ZHY",         "sizm": "ZLZW",         "zwmc": "中卫沙坡头机场",         "ywmc": "ZHONGWEI"     },     {         "fwqd": "阿克苏",         "sanzm": "AKU",         "sizm": "ZWAK",         "zwmc": "阿克苏机场",         "ywmc": "AKSU"     },     {         "fwqd": "阿勒泰",         "sanzm": "AAT",         "sizm": "ZWAT",         "zwmc": "阿勒泰机场",         "ywmc": "ALTAY"     },     {         "fwqd": "富蕴",         "sanzm": "FYN",         "sizm": "ZWFY",         "zwmc": "富蕴机场",         "ywmc": "FUYUN"     },     {         "fwqd": "哈密",         "sanzm": "HMI",         "sizm": "ZWHM",         "zwmc": "哈密机场",         "ywmc": "HAMI"     },     {         "fwqd": "和田",         "sanzm": "HTN",         "sizm": "ZWTN",         "zwmc": "和田机场",         "ywmc": "HETIAN"     },     {         "fwqd": "库尔勒",         "sanzm": "KRL",         "sizm": "ZWKL",         "zwmc": "库尔勒机场",         "ywmc": "KORLA"     },     {         "fwqd": "且末",         "sanzm": "IQM",         "sizm": "ZWCM",         "zwmc": "且末机场",         "ywmc": "QIEMO"     },     {         "fwqd": "吐鲁番",         "sanzm": "TLQ",         "sizm": "ZWTP",         "zwmc": "吐鲁番交河机场",         "ywmc": "TULUFAN"     },     {         "fwqd": "乌鲁木齐",         "sanzm": "URC",         "sizm": "ZWWW",         "zwmc": "乌鲁木齐地窝堡国际机场",         "ywmc": "URUMQI"     },     {         "fwqd": "博尔塔拉",         "sanzm": "BPL",         "sizm": "ZWBL",         "zwmc": "博乐阿拉山口机场",         "ywmc": "BOLE"     },     {         "fwqd": "布尔津",         "sanzm": "KJI",         "sizm": "ZWKN",         "zwmc": "布尔津喀纳斯机场",         "ywmc": "BUERJIN"     },     {         "fwqd": "喀什",         "sanzm": "KHG",         "sizm": "ZWSH",         "zwmc": "喀什机场",         "ywmc": "KASHGAR"     },     {         "fwqd": "克拉玛依",         "sanzm": "KRY",         "sizm": "ZWKM",         "zwmc": "克拉玛依机场",         "ywmc": "KARAMAY"     },     {         "fwqd": "库车",         "sanzm": "KCA",         "sizm": "ZWKC",         "zwmc": "库车龟兹机场",         "ywmc": "KUQA"     },     {         "fwqd": "塔城",         "sanzm": "TCG",         "sizm": "ZWTC",         "zwmc": "塔城机场",         "ywmc": "TACHENG"     },     {         "fwqd": "伊宁",         "sanzm": "YIN",         "sizm": "ZWYN",         "zwmc": "伊宁机场",         "ywmc": "YINING"     },     {         "fwqd": "新源",         "sanzm": "NLT",         "sizm": "ZWNL",         "zwmc": "新源那拉提机场",         "ywmc": "NALATI"     },     {         "fwqd": "香港",         "sanzm": "HKG",         "sizm": "VHHH",         "zwmc": "香港国际机场",         "ywmc": "HONG KONG"     },     {         "fwqd": "澳门",         "sanzm": "MFM",         "sizm": "VMMC",         "zwmc": "澳门国际机场",         "ywmc": "MACAU"     },     {         "fwqd": "台北",         "sanzm": "TSA",         "sizm": "RCSS",         "zwmc": "台北松山机场",         "ywmc": "TAIBEI"     },     {         "fwqd": "桃园",         "sanzm": "TPE",         "sizm": "RCTP",         "zwmc": "桃园国际机场",         "ywmc": "TAOYUAN"     },     {         "fwqd": "高雄",         "sanzm": "KHH",         "sizm": "RCKH",         "zwmc": "高雄国际机场",         "ywmc": "GAOXIONG"     } ]';//先定义一个空数组，每次导出都会清空  -- 防止了第二次导出会出现多次列名
+                // console.log(JSON.parse(lists));
+                var list = [];
+                list.push(...JSON.parse(lists));
+                list.unshift({ fwqd: '服务地区', sanzm: '三字码', sizm: '四字码', zwmc: '中文名称', ywmc: '英文名称' });
+               
+                console.log(list);
+                var data = excel.filterExportData(list, [//列头顺序可以重新排列的函数
+                    'fwqd',
+                    'sanzm',
+                    'sizm',
+                    'zwmc',
+                    'ywmc',
+                ]);
+                excel.setExportCellStyle(data, 'A1:D1', {
+                    s: {
+                        // fill:{},
+                        alignment: {
+                            horizontal: 'center',
+                            vertical: 'center',
+                            wrapText: true,
+                        }
+
+                    }
+                })
+                // layer.close(index);
+                excel.exportExcel({
+                    sheet1: data
+                }, '三字码.xlsx');
         });
     })
-
+    //买彩票的策略
 
 
 
@@ -1155,6 +1412,62 @@
             }
         }
     }
+    
+    
+    /**
+     * 比对中奖号码数量
+     * 1.中奖号码
+     * 2.投注号码
+     * 3.把他们加入同一个数组中，如果号码个数除以2 再和原来基本号码个数比较 少几个就中了几个，篮球单独比较
+     */
+    function bd_zjhmcount(zjnum,tznum){
+        // zjnum = '1,2,3,4,5,6+10';
+        // tznum = '1,2,5,6,5,7+11';
+        var returnval="";
+        if(zjnum==''){
+            returnval = '中奖号码不能为空！';
+        }
+        if(tznum == ''){
+            returnval = '投注号码不能为空！';
+        }
+        if(zjnum!=''&&tznum!=''&&zjnum!=undefined&&tznum!=undefined){
+            zjnum = zjnum.replace(/，/g,',')
+            tznum = tznum.replace(/，/g,',')
+            var zjnum_arr = zjnum.split('+');
+            var tznum_arr = tznum.split('+');
+            //红球
+            var arr = [];
+            var zjnum_hq = zjnum_arr[0].split(',');
+            var tznum_hq = tznum_arr[0].split(',');
+            zjnum_hq.forEach(element => {
+                arr.push(element);
+            });
+            tznum_hq.forEach(element => {
+                arr.push(element);
+            });
+            var newarr = unique(arr);
+            let bznum= zjnum_hq.length*2-newarr.length;
+            returnval += "红球比中"+bznum+"个";
+            //篮球
+            var zjnum_lq = zjnum_arr[1];
+            var tznum_lq = tznum_arr[1];
+            if(zjnum_lq == tznum_lq){
+                returnval += "蓝球比中"+1+"个";
+            }else{
+                returnval += "蓝球比中"+0+"个";
+            }
+            console.log(returnval);
+        }
+      
+
+
+        return returnval;
+    }
+    
+    
+    
+    
+    
     //数组去重
     function unique(arr) {
         return Array.from(new Set(arr))
