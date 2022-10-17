@@ -1186,8 +1186,9 @@ function mh_cl(arr){
          var kjhm1 = $('#kjhm1').val().replace(/，/g, ',').split('+')[0].split(',');
          yfnum.push(...kjhm);
          yfnum.push(...kjhm1);
-         var first_qh = bkhd_way(yfnum);//上两期
+         yfnum = bkhd_way(yfnum);//上两期
         // 我看好的号码-手动添加？？  yfnum.push([1,2])
+        yfnum.push(...[11,13,16,19,28,30]);
         
          yfnum = unique(yfnum);//去重
          mp(yfnum);//冒泡排序
@@ -1196,8 +1197,14 @@ function mh_cl(arr){
         //第一个策略：大神会在重点号码中选两到三个号码作为胆码，然后随心与重点号码组合，一般五注，花费十元
         var dm = random_arg(good_num,3);
         good_num = del_arr(good_num,dm);//删除三个胆码
+        // for (let index = 0; index < 5; index++) {
+        //   var temp=[];
+        //   temp.push(...good_num);
+        //   console.log(dm+","+random_arg(temp,3));
+        // }
         console.log("随机五注:1. "+dm+","+random_arg(good_num,3)+" 2. "+dm+","+random_arg(good_num,3)+" 3. "+dm+","+random_arg(good_num,3)+" 4. "+dm+","+random_arg(good_num,3)
         +" 5. "+dm+","+random_arg(good_num,3));
+        good_num = khd_num;
         //胆码除外的重点号码自由组合，一般三注，花费六元。
         console.log("自由组合三注:1. "+random_arg(good_num,6)+" 2. "+random_arg(good_num,6)+" 3. "+random_arg(good_num,6));
         //预防号码自由组合，一般三注，花费六元。
@@ -1212,9 +1219,11 @@ function mh_cl(arr){
 
 function random_arg(arr,xb){
     var selected_red=[];
+    var temp = [...arr];
     for (let index = 0; index < xb; index++) {
-        var ran = parseInt(Math.random() * arr.length);//随机数组的下标  （下标范围就是数组的长度）
-        selected_red.push(arr[ran]);
+        var ran = parseInt(Math.random() * temp.length);//随机数组的下标  （下标范围就是数组的长度）
+        selected_red.push(temp[ran]);
+        temp = del_arr(temp,selected_red);
     }
     return selected_red;
 }
